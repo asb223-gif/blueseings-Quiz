@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bluewings Player Quiz</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
+  background: #061a36;
+  color: white;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* 화면 */
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 시작화면 */
+#splash {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 35%, #164d91 0%, #082853 38%, #041326 75%);
+}
+
+.logo-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  position: relative;
+  animation: logoIn .8s ease-out;
+}
+
+.logo-circle::after {
+  content: "";
+  position: absolute;
+  width: 125px;
+  height: 4px;
+  background: #e31d3b;
+  bottom: 28px;
+  border-radius: 10px;
+}
+
+.logo-text {
+  font-size: 55px;
+  font-weight: 900;
+  letter-spacing: -5px;
+}
+
+@keyframes logoIn {
+  from {
+    transform: scale(.55);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.brand {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  margin-top: 8px;
+  color: #9bbce3;
+  letter-spacing: 4px;
+  font-size: 12px;
+}
+
+.start-btn {
+  margin-top: 55px;
+  width: min(330px, 90%);
+  padding: 17px;
+  border: 0;
+  border-radius: 16px;
+  background: white;
+  color: #082853;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* 메뉴 */
+#menu {
+  background:
+    linear-gradient(160deg, #092b5a 0%, #061a36 65%);
+}
+
+.menu-header {
+  margin-top: 25px;
+  margin-bottom: 35px;
+}
+
+.small-title {
+  color: #78a7dc;
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.menu-header h1 {
+  font-size: 31px;
+  margin: 8px 0 8px;
+}
+
+.menu-header p {
+  color: #aab9ca;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.game-card {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.07);
+  border-radius: 22px;
+  padding: 24px;
+  color: white;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.game-icon {
+  font-size: 35px;
+  margin-bottom: 16px;
+}
+
+.game-title {
+  font-size: 20px;
+  font-weight: 850;
+}
+
+.game-desc {
+  color: #aebdd0;
+  margin-top: 7px;
+  font-size: 14px;
+}
+
+/* 퀴즈 */
+.quiz-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back {
+  background: rgba(255,255,255,.08);
+  color: white;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.progress {
+  color: #9fb1c7;
+  font-weight: 700;
+}
+
+.visual {
+  height: 300px;
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, #123d72, #081d39);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.number-display {
+  font-size: 125px;
+  font-weight: 950;
+  font-style: italic;
+  text-shadow: 5px 5px 0 #d81f3c;
+}
+
+.face-placeholder {
+  text-align: center;
+}
+
+.face-placeholder .person {
+  font-size: 95px;
+}
+
+.face-placeholder div:last-child {
+  margin-top: 12px;
+  color: #a8bad0;
+}
+
+.question {
+  font-size: 21px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+.answer {
+  min-height: 62px;
+  border: 1px solid rgba(255,255,255,.13);
+  background: rgba(255,255,255,.07);
+  color: white;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.answer.correct {
+  background: #167346;
+  border-color: #35c57d;
+}
+
+.answer.wrong {
+  background: #84293b;
+  border-color: #ec5570;
+}
+
+/* 프로필 */
+#profile {
+  background:
+    linear-gradient(160deg, #082750, #05162d);
+}
+
+.result-label {
+  text-align: center;
+  font-size: 21px;
+  font-weight: 900;
+  margin: 15px 0 20px;
+}
+
+.player-card {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 24px;
+  padding: 23px;
+}
+
+.profile-face {
+  height: 190px;
+  background: linear-gradient(145deg,#164a86,#0a2446);
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 85px;
+}
+
+.player-number {
+  color: #6fa7e8;
+  font-weight: 800;
+  margin-top: 19px;
+}
+
+.player-name {
+  font-size: 32px;
+  font-weight: 950;
+  margin-top: 3px;
+}
+
+.player-position {
+  color: #d7e3f2;
+  margin-top: 3px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 22px;
+  gap: 12px;
+}
+
+.info {
+  background: rgba(0,0,0,.18);
+  border-radius: 14px;
+  padding: 13px;
+}
+
+.info span {
+  display: block;
+  color: #8199b5;
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.info strong {
+  font-size: 14px;
+}
+
+.next-btn {
+  width: 100%;
+  margin-top: 20px;
+  border: 0;
+  background: #f5f7fa;
+  color: #071b35;
+  padding: 17px;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+/* 결과 */
+#result {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.score-big {
+  font-size: 75px;
+  font-weight: 950;
+  margin: 20px;
+}
+
+.score-text {
+  color: #a7b9cd;
+}
+
+.restart {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 350px;
+  padding: 17px;
+  border: 0;
+  border-radius: 15px;
+  background: white;
+  color: #08254b;
+  font-weight: 900;
+  font-size: 17px;
+}
+
+@media (min-width:700px) {
+  .screen {
+    max-width: 520px;
+    margin: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 시작 -->
+<section id="splash" class="screen active">
+
+  <div class="logo-circle">
+    <div class="logo-text">S</div>
+  </div>
+
+  <div class="brand">SUWON BLUEWINGS</div>
+  <div class="subtitle">PLAYER QUIZ</div>
+
+  <button class="start-btn" onclick="showScreen('menu')">
+    게임 시작
+  </button>
+
+</section>
+
+
+<!-- 게임 선택 -->
+<section id="menu" class="screen">
+
+  <div class="menu-header">
+    <div class="small-title">BLUEWINGS PLAYER QUIZ</div>
+    <h1>선수들을 얼마나 알고 있나요?</h1>
+    <p>
+      퀴즈를 풀면서<br>
+      2026 수원삼성 선수단을 외워보세요.
+    </p>
+  </div>
+
+  <button class="game-card" onclick="startGame('face')">
+    <div class="game-icon">👤</div>
+    <div class="game-title">얼굴 보고 맞히기</div>
+    <div class="game-desc">
+      선수의 얼굴을 보고 이름을 맞혀보세요
+    </div>
+  </button>
+
+  <button class="game-card" onclick="startGame('number')">
+    <div class="game-icon">🔢</div>
+    <div class="game-title">등번호 보고 맞히기</div>
+    <div class="game-desc">
+      등번호만 보고 선수를 맞혀보세요
+    </div>
+  </button>
+
+</section>
+
+
+<!-- 퀴즈 -->
+<section id="quiz" class="screen">
+
+  <div class="quiz-top">
+
+    <button class="back" onclick="showScreen('menu')">
+      ← 메뉴
+    </button>
+
+    <div id="progress" class="progress">
+      1 / 10
+    </div>
+
+  </div>
+
+  <div id="visual" class="visual"></div>
+
+  <div class="question">
+    이 선수는 누구일까요?
+  </div>
+
+  <div id="answers" class="answers"></div>
+
+</section>
+
+
+<!-- 선수 프로필 -->
+<section id="profile" class="screen">
+
+  <div id="resultLabel" class="result-label"></div>
+
+  <div class="player-card">
+
+    <div class="profile-face">
+      👤
+    </div>
+
+    <div id="profileNumber" class="player-number"></div>
+
+    <div id="profileName" class="player-name"></div>
+
+    <div id="profilePosition" class="player-position"></div>
+
+    <div class="info-grid">
+
+      <div class="info">
+        <span>생년월일</span>
+        <strong id="birth"></strong>
+      </div>
+
+      <div class="info">
+        <span>포지션</span>
+        <strong id="position"></strong>
+      </div>
+
+      <div class="info">
+        <span>신장</span>
+        <strong id="height"></strong>
+      </div>
+
+      <div class="info">
+        <span>체중</span>
+        <strong id="weight"></strong>
+      </div>
+
+      <div class="info">
+        <span>국적</span>
+        <strong id="nation"></strong>
+      </div>
+
+      <div class="info">
+        <span>출신교</span>
+        <strong id="school"></strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <button class="next-btn" onclick="nextQuestion()">
+    다음 선수 →
+  </button>
+
+</section>
+
+
+<!-- 결과 -->
+<section id="result" class="screen">
+
+  <div class="small-title">QUIZ COMPLETE</div>
+
+  <h1>경기 종료!</h1>
+
+  <div id="finalScore" class="score-big"></div>
+
+  <div id="scoreText" class="score-text"></div>
+
+  <button class="restart" onclick="showScreen('menu')">
+    다시 도전하기
+  </button>
+
+</section>
+
+
+<script>
+
+/*
+  현재는 게임 작동 테스트용 데이터.
+  선수 데이터는 다음 버전에서 전체 선수단으로 확장.
+*/
+
+const players = [
+
+  {
+    name: "이상민",
+    number: 92,
+    position: "공격수",
+    birth: "2004.06.29",
+    height: "175cm",
+    weight: "60kg",
+    nation: "대한민국",
+    school: "매탄고"
+  },
+
+  {
+    name: "모경빈",
+    number: 3,
+    position: "수비수",
+    birth: "2007.03.24",
+    height: "186cm",
+    weight: "78kg",
+    nation: "대한민국",
+    school: "매탄고"
+  },
+
+  {
+    name: "강성진",
+    number: 22,
+    position: "공격수",
+    birth: "-",
+    height: "-",
+    weight: "-",
+    nation: "대한민국",
+    school: "-"
+  },
+
+  {
+    name: "강현묵",
+    number: 17,
+    position: "미드필더",
+    birth: "-",
+    height: "-",
+    weight: "-",
+    nation: "대한민국",
+    school: "-"
+  },
+
+  {
+    name: "고승범",
+    number: 24,
+    position: "미드필더",
+    birth: "-",
+    height: "-",
+    weight: "-",
+    nation: "대한민국",
+    school: "-"
+  },
+
+  {
+    name: "고종현",
+    number: 5,
+    position: "수비수",
+    birth: "-",
+    height: "-",
+    weight: "-",
+    nation: "대한민국",
+    school: "-"
+  },
+
+  {
+    name: "홍정호",
+    number: 20,
+    position: "수비수",
+    birth: "-",
+    height: "-",
+    weight: "-",
+    nation: "대한민국",
+    school: "-"
+  },
+
+  {
+    name: "정호연",
+    number: 14,
+    position: "미드필더",
+    birth: "-",
+    height: "-",
+    weight: "-",
+    nation: "대한민국",
+    school: "-"
+  },
+
+  {
+    name: "김준홍",
+    number: 30,
+    position: "골키퍼",
+    birth: "-",
+    height: "-",
+    weight: "-",
+    nation: "대한민국",
+    school: "-"
+  },
+
+  {
+    name: "브루노 실바",
+    number: 58,
+    position: "공격수",
+    birth: "-",
+    height: "-",
+    weight: "-",
+    nation: "브라질",
+    school: "-"
+  }
+
+];
+
+
+let gameMode = "number";
+let current = 0;
+let score = 0;
+let questions = [];
+let currentPlayer = null;
+
+
+function showScreen(id) {
+
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  window.scrollTo(0,0);
+}
+
+
+function shuffle(array) {
+
+  return [...array].sort(() => Math.random() - 0.5);
+
+}
+
+
+function startGame(mode) {
+
+  gameMode = mode;
+  current = 0;
+  score = 0;
+
+  questions = shuffle(players).slice(0,10);
+
+  showScreen("quiz");
+
+  loadQuestion();
+
+}
+
+
+function loadQuestion() {
+
+  currentPlayer = questions[current];
+
+  document.getElementById("progress").textContent =
+    `${current + 1} / ${questions.length}`;
+
+  const visual = document.getElementById("visual");
+
+  if(gameMode === "number") {
+
+    visual.innerHTML =
+      `<div class="number-display">${currentPlayer.number}</div>`;
+
+  } else {
+
+    visual.innerHTML = `
+      <div class="face-placeholder">
+        <div class="person">👤</div>
+        <div>선수 사진 연결 예정</div>
+      </div>
+    `;
+
+  }
+
+  createAnswers();
+
+}
+
+
+function createAnswers() {
+
+  const container = document.getElementById("answers");
+
+  container.innerHTML = "";
+
+  let wrongPlayers =
+    shuffle(
+      players.filter(p => p.name !== currentPlayer.name)
+    ).slice(0,3);
+
+  let choices =
+    shuffle([currentPlayer, ...wrongPlayers]);
+
+  choices.forEach(player => {
+
+    const button = document.createElement("button");
+
+    button.className = "answer";
+    button.textContent = player.name;
+
+    button.onclick = () => selectAnswer(player, button);
+
+    container.appendChild(button);
+
+  });
+
+}
+
+
+function selectAnswer(selected, button) {
+
+  const buttons =
+    document.querySelectorAll(".answer");
+
+  buttons.forEach(b => b.disabled = true);
+
+  const correct =
+    selected.name === currentPlayer.name;
+
+  if(correct) {
+
+    score++;
+    button.classList.add("correct");
+
+  } else {
+
+    button.classList.add("wrong");
+
+    buttons.forEach(b => {
+
+      if(b.textContent === currentPlayer.name) {
+        b.classList.add("correct");
+      }
+
+    });
+
+  }
+
+  setTimeout(() => {
+
+    showProfile(correct);
+
+  }, 550);
+
+}
+
+
+function showProfile(correct) {
+
+  showScreen("profile");
+
+  document.getElementById("resultLabel").textContent =
+    correct ? "⭕ 정답입니다!" : "❌ 정답을 확인하세요";
+
+  document.getElementById("profileNumber").textContent =
+    `NO. ${currentPlayer.number}`;
+
+  document.getElementById("profileName").textContent =
+    currentPlayer.name;
+
+  document.getElementById("profilePosition").textContent =
+    currentPlayer.position;
+
+  document.getElementById("birth").textContent =
+    currentPlayer.birth;
+
+  document.getElementById("position").textContent =
+    currentPlayer.position;
+
+  document.getElementById("height").textContent =
+    currentPlayer.height;
+
+  document.getElementById("weight").textContent =
+    currentPlayer.weight;
+
+  document.getElementById("nation").textContent =
+    currentPlayer.nation;
+
+  document.getElementById("school").textContent =
+    currentPlayer.school;
+
+}
+
+
+function nextQuestion() {
+
+  current++;
+
+  if(current >= questions.length) {
+
+    finishGame();
+    return;
+
+  }
+
+  showScreen("quiz");
+
+  loadQuestion();
+
+}
+
+
+function finishGame() {
+
+  showScreen("result");
+
+  document.getElementById("finalScore").textContent =
+    `${score} / ${questions.length}`;
+
+  const percent =
+    Math.round(score / questions.length * 100);
+
+  document.getElementById("scoreText").textContent =
+    `정답률 ${percent}%`;
+
+}
+
+</script>
+
+</body>
+</html>
