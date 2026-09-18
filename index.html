@@ -8,7 +8,6 @@
 <title>Bluewings Player Quiz</title>
 
 <style>
-
 :root{
   --blue:#0b4da2;
   --deep:#06152e;
@@ -51,7 +50,6 @@ button{
   flex-direction:column;
 }
 
-
 /* START */
 
 #splash{
@@ -59,14 +57,13 @@ button{
   align-items:center;
   justify-content:center;
   text-align:center;
-
   background:
-  radial-gradient(
-    circle at 50% 28%,
-    #1761ba 0,
-    #0b3470 32%,
-    #06152e 72%
-  );
+    radial-gradient(
+      circle at 50% 28%,
+      #1761ba 0,
+      #0b3470 32%,
+      #06152e 72%
+    );
 }
 
 .crest{
@@ -78,17 +75,14 @@ button{
 }
 
 @keyframes pop{
-
   from{
     opacity:0;
     transform:scale(.65) translateY(20px);
   }
-
   to{
     opacity:1;
     transform:none;
   }
-
 }
 
 .brand{
@@ -121,6 +115,11 @@ button{
   margin-top:48px;
 }
 
+.enter-hint{
+  font-size:12px;
+  opacity:.55;
+  margin-top:12px;
+}
 
 /* MENU */
 
@@ -166,15 +165,18 @@ button{
   min-height:145px;
 }
 
+.game-card:hover{
+  background:rgba(255,255,255,.1);
+}
+
 .game-card.hard{
   border-color:rgba(227,38,69,.5);
-
   background:
-  linear-gradient(
-    145deg,
-    rgba(227,38,69,.16),
-    rgba(255,255,255,.045)
-  );
+    linear-gradient(
+      145deg,
+      rgba(227,38,69,.16),
+      rgba(255,255,255,.045)
+    );
 }
 
 .game-card .icon{
@@ -193,10 +195,9 @@ button{
   line-height:1.4;
 }
 
-.hard b{
+.game-card.hard b{
   color:#ff91a4;
 }
-
 
 /* QUIZ */
 
@@ -244,15 +245,13 @@ button{
   border:1px solid var(--line);
   border-radius:24px;
   overflow:hidden;
-
   background:
-  radial-gradient(
-    circle at 50% 35%,
-    #185eb2,
-    #0b326b 55%,
-    #071a38
-  );
-
+    radial-gradient(
+      circle at 50% 35%,
+      #185eb2,
+      #0b326b 55%,
+      #071a38
+    );
   display:flex;
   align-items:flex-end;
   justify-content:center;
@@ -280,7 +279,6 @@ button{
   margin:21px 0 14px;
 }
 
-
 /* NORMAL */
 
 .answers{
@@ -300,6 +298,10 @@ button{
   font-size:16px;
 }
 
+.answer:hover{
+  background:rgba(255,255,255,.12);
+}
+
 .answer.correct{
   background:#14754b;
   border-color:#47d18e;
@@ -309,7 +311,6 @@ button{
   background:#8a2940;
   border-color:#ff6984;
 }
-
 
 /* HARD */
 
@@ -356,7 +357,6 @@ button{
   margin-top:9px;
 }
 
-
 /* PROFILE */
 
 .result-label{
@@ -376,14 +376,12 @@ button{
 
 .profile-photo{
   height:340px;
-
   background:
-  radial-gradient(
-    circle at 50% 30%,
-    #1b65bb,
-    #0a2a5a
-  );
-
+    radial-gradient(
+      circle at 50% 30%,
+      #1b65bb,
+      #0a2a5a
+    );
   display:flex;
   justify-content:center;
   align-items:flex-end;
@@ -438,7 +436,6 @@ button{
   font-size:15px;
 }
 
-
 /* RESULT */
 
 .center{
@@ -480,7 +477,6 @@ button{
 }
 
 @media(max-width:400px){
-
   .visual{
     height:310px;
   }
@@ -493,7 +489,6 @@ button{
     min-height:135px;
     padding:17px 13px;
   }
-
 }
 
 </style>
@@ -501,14 +496,14 @@ button{
 
 <body>
 
-
 <!-- START -->
 
 <section id="splash" class="screen active">
 
 <img
-class="crest"
-src="https://www.kleague.com/assets/images/emblem/emblem_K02.png">
+  class="crest"
+  src="https://www.kleague.com/assets/images/emblem/emblem_K02.png"
+  alt="수원삼성">
 
 <div class="brand">
 SUWON BLUEWINGS
@@ -518,14 +513,15 @@ SUWON BLUEWINGS
 PLAYER QUIZ
 </div>
 
-<button
-class="primary"
-id="startBtn">
+<button class="primary" id="startBtn">
 게임 시작
 </button>
 
-</section>
+<div class="enter-hint">
+PC에서는 Enter 키로 시작
+</div>
 
+</section>
 
 
 <!-- MENU -->
@@ -549,7 +545,6 @@ id="startBtn">
 
 </div>
 
-
 <div class="mode-title">
 👤 얼굴 보고 맞히기
 </div>
@@ -557,12 +552,11 @@ id="startBtn">
 <div class="mode-row">
 
 <button
-class="game-card"
-data-mode="face"
-data-level="normal">
+  class="game-card"
+  data-mode="face"
+  data-level="normal">
 
 <div class="icon">⚽</div>
-
 <b>Normal</b>
 
 <span>
@@ -572,14 +566,12 @@ data-level="normal">
 
 </button>
 
-
 <button
-class="game-card hard"
-data-mode="face"
-data-level="hard">
+  class="game-card hard"
+  data-mode="face"
+  data-level="hard">
 
 <div class="icon">🔥</div>
-
 <b>Hard</b>
 
 <span>
@@ -599,12 +591,11 @@ data-level="hard">
 <div class="mode-row">
 
 <button
-class="game-card"
-data-mode="number"
-data-level="normal">
+  class="game-card"
+  data-mode="number"
+  data-level="normal">
 
 <div class="icon">⚽</div>
-
 <b>Normal</b>
 
 <span>
@@ -614,14 +605,12 @@ data-level="normal">
 
 </button>
 
-
 <button
-class="game-card hard"
-data-mode="number"
-data-level="hard">
+  class="game-card hard"
+  data-mode="number"
+  data-level="hard">
 
 <div class="icon">🔥</div>
-
 <b>Hard</b>
 
 <span>
@@ -636,71 +625,47 @@ data-level="hard">
 </section>
 
 
-
 <!-- QUIZ -->
 
 <section id="quiz" class="screen">
 
 <div class="top">
 
-<button
-class="back"
-id="menuBtn">
+<button class="back" id="menuBtn">
 ← 메뉴
 </button>
 
-<div
-class="progress"
-id="progress">
-</div>
+<div class="progress" id="progress"></div>
 
 </div>
 
+<div id="badge" class="badge"></div>
 
-<div
-id="badge"
-class="badge">
-</div>
-
-
-<div
-class="visual"
-id="visual">
-</div>
-
+<div class="visual" id="visual"></div>
 
 <div class="question">
 이 선수는 누구일까요?
 </div>
 
+<div class="answers" id="answers"></div>
 
-<div
-class="answers"
-id="answers">
-</div>
-
-
-<div
-class="hard-box"
-id="hardBox">
+<div class="hard-box" id="hardBox">
 
 <input
-id="nameInput"
-class="name-input"
-type="text"
-autocomplete="off"
-autocorrect="off"
-spellcheck="false"
-placeholder="선수 이름 입력">
+  id="nameInput"
+  class="name-input"
+  type="text"
+  autocomplete="off"
+  autocorrect="off"
+  spellcheck="false"
+  placeholder="선수 이름 입력">
 
-<button
-id="submitBtn"
-class="submit">
+<button id="submitBtn" class="submit">
 정답 확인
 </button>
 
 <div class="help">
-띄어쓰기는 무시됩니다 · Enter로도 제출 가능
+띄어쓰기는 무시됩니다 · Enter로 정답 확인
 </div>
 
 </div>
@@ -708,44 +673,25 @@ class="submit">
 </section>
 
 
-
 <!-- PROFILE -->
 
 <section id="profile" class="screen">
 
-<div
-id="resultLabel"
-class="result-label">
-</div>
-
+<div id="resultLabel" class="result-label"></div>
 
 <div class="profile-card">
 
 <div class="profile-photo">
-
-<img
-id="profileImg">
-
+<img id="profileImg" alt="선수 사진">
 </div>
-
 
 <div class="profile-body">
 
-<div
-id="pNo"
-class="no">
-</div>
+<div id="pNo" class="no"></div>
 
-<div
-id="pName"
-class="name">
-</div>
+<div id="pName" class="name"></div>
 
-<div
-id="pPos"
-class="pos">
-</div>
-
+<div id="pPos" class="pos"></div>
 
 <div class="grid">
 
@@ -772,25 +718,18 @@ class="pos">
 </div>
 
 </div>
-
 </div>
 
-
-<button
-class="primary"
-id="nextBtn">
-다음 선수 →
+<button class="primary" id="nextBtn">
+다음 선수 →　<span style="opacity:.5">Enter</span>
 </button>
 
 </section>
 
 
-
 <!-- RESULT -->
 
-<section
-id="result"
-class="screen center">
+<section id="result" class="screen center">
 
 <div class="kicker">
 QUIZ COMPLETE
@@ -800,100 +739,39 @@ QUIZ COMPLETE
 경기 종료!
 </h1>
 
-<div
-id="finalScore"
-class="score">
-</div>
+<div id="finalScore" class="score"></div>
 
-<div
-id="scoreText"
-class="desc">
-</div>
+<div id="scoreText" class="desc"></div>
 
-<div
-id="wrongList"
-class="wrong-list">
-</div>
-
+<div id="wrongList" class="wrong-list"></div>
 
 <button
-id="retryWrong"
-class="primary"
-style="display:none">
+  id="retryWrong"
+  class="primary"
+  style="display:none">
 틀린 선수 다시 풀기
 </button>
 
-
 <button
-id="newGameBtn"
-class="primary secondary">
+  id="newGameBtn"
+  class="primary secondary">
 새로운 랜덤 10명
 </button>
 
-
 <button
-id="homeBtn"
-class="primary third">
+  id="homeBtn"
+  class="primary third">
 게임 선택으로
 </button>
 
 </section>
 
 
-/* ==================================
-   PC ENTER KEY
-================================== */
-
-document.addEventListener("keydown", event => {
-
-  if (event.key !== "Enter") return;
-
-  const activeScreen =
-    document.querySelector(".screen.active");
-
-  if (!activeScreen) return;
-
-
-  /* 시작 화면 → 게임 선택 */
-  if (activeScreen.id === "splash") {
-
-    event.preventDefault();
-
-    show("menu");
-
-    return;
-  }
-
-
-  /* 선수 프로필 → 다음 선수 */
-  if (activeScreen.id === "profile") {
-
-    event.preventDefault();
-
-    nextQuestion();
-
-    return;
-  }
-
-
-  /*
-    HARD 문제에서는 기존
-    입력창 Enter 제출 기능 사용
-  */
-  if (
-    activeScreen.id === "quiz" &&
-    level === "hard"
-  ) {
-
-    return;
-  }
-
-});
 <script>
 
-/* ==================================
-   공식 K리그 이미지
-================================== */
+/* ==============================
+   IMAGE
+============================== */
 
 const K02 =
 "https://d2tfp74nsbbrkr.cloudfront.net/v1/player/2026/K02/";
@@ -902,21 +780,11 @@ const k02 = id =>
 K02 + "player_" + id + ".png";
 
 
-/* ==================================
-   현재 선수단
-
-   face:true =
-   얼굴퀴즈 사용 가능
-
-   face:false =
-   사진 스타일이 다르거나
-   현재 동일 규격 사진이 불명확하여
-   얼굴 퀴즈에서는 제외
-================================== */
+/* ==============================
+   PLAYERS
+============================== */
 
 const players = [
-
-/* GK */
 
 {
 name:"김민준",
@@ -961,9 +829,6 @@ foreign:false,
 face:true,
 image:k02("20240322")
 },
-
-
-/* DF */
 
 {
 name:"모경빈",
@@ -1132,9 +997,6 @@ image:
 "https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20240309.png"
 },
 
-
-/* MF */
-
 {
 name:"임지훈",
 number:6,
@@ -1245,9 +1107,6 @@ face:true,
 image:k02("20260272")
 },
 
-
-/* FW */
-
 {
 name:"르본",
 number:8,
@@ -1300,13 +1159,7 @@ position:"FW",
 birth:"",
 body:"",
 foreign:true,
-
-/*
- 다른 구단 촬영 이미지라
- 얼굴퀴즈에서는 제외
-*/
 face:false,
-
 image:
 "https://d2tfp74nsbbrkr.cloudfront.net/v1/player/2026/K36/player_20230147.png"
 },
@@ -1363,13 +1216,7 @@ position:"FW",
 birth:"",
 body:"",
 foreign:false,
-
-/*
- 공식 페이지 사진이
- 2024 촬영본이라 얼굴문제 제외
-*/
 face:false,
-
 image:
 "https://d2tfp74nsbbrkr.cloudfront.net/v1/player/2024/K02/player_20220187.png"
 },
@@ -1400,12 +1247,7 @@ image:k02("20260243")
 ];
 
 
-/*
- 외국인 문제에서만 사용하는
- 타팀 오답 이름
-
- 문제의 정답으로는 절대 나오지 않음
-*/
+/* 외국인 선수용 오답 */
 
 const foreignDummy = [
 
@@ -1419,9 +1261,9 @@ const foreignDummy = [
 ];
 
 
-/* ==================================
+/* ==============================
    STATE
-================================== */
+============================== */
 
 let mode = "face";
 let level = "normal";
@@ -1435,955 +1277,810 @@ let wrong = [];
 let lastMode = "face";
 let lastLevel = "normal";
 
+let hardSubmitting = false;
+
 const $ = id =>
 document.getElementById(id);
 
 
-/* ==================================
+/* ==============================
    SCREEN
-================================== */
+============================== */
 
 function show(id){
 
-document
-.querySelectorAll(".screen")
-.forEach(
-screen =>
-screen.classList.remove("active")
-);
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen =>
+      screen.classList.remove("active")
+    );
 
-$(id)
-.classList.add("active");
+  $(id).classList.add("active");
 
-window.scrollTo(0,0);
-
+  window.scrollTo(0,0);
 }
 
 
-/* ==================================
+/* ==============================
    SHUFFLE
-================================== */
+============================== */
 
 function shuffle(array){
 
-const a = [...array];
+  const a = [...array];
 
-for(
-let i = a.length - 1;
-i > 0;
-i--
-){
+  for(let i = a.length - 1; i > 0; i--){
 
-const j =
-Math.floor(
-Math.random() *
-(i + 1)
-);
+    const j =
+      Math.floor(
+        Math.random() * (i + 1)
+      );
 
-[
-a[i],
-a[j]
-] = [
-a[j],
-a[i]
-];
+    [a[i],a[j]] =
+    [a[j],a[i]];
+  }
 
-}
-
-return a;
-
+  return a;
 }
 
 
-/* ==================================
+/* ==============================
    START GAME
-================================== */
+============================== */
 
 function startGame(
-gameMode,
-gameLevel,
-customPlayers = null
+  gameMode,
+  gameLevel,
+  customPlayers = null
 ){
 
-mode = gameMode;
-level = gameLevel;
+  mode = gameMode;
+  level = gameLevel;
 
-lastMode = mode;
-lastLevel = level;
+  lastMode = mode;
+  lastLevel = level;
 
-index = 0;
-score = 0;
-wrong = [];
+  index = 0;
+  score = 0;
+  wrong = [];
+
+  let pool;
+
+  if(mode === "face"){
+
+    pool =
+      players.filter(
+        p =>
+        p.face === true &&
+        p.image
+      );
+
+  }else{
+
+    pool = [...players];
+  }
 
 
-let pool;
+  if(customPlayers){
+
+    pool =
+      customPlayers.filter(
+        p =>
+        mode !== "face" ||
+        p.face === true
+      );
+
+    questions =
+      shuffle(pool);
+
+  }else{
+
+    questions =
+      shuffle(pool)
+      .slice(0,10);
+  }
 
 
-/*
- 얼굴 퀴즈
-
- 동일한 프로필 스타일로
- 사용 가능한 선수만 출제
-*/
-
-if(
-mode === "face"
-){
-
-pool =
-players.filter(
-p =>
-p.face === true &&
-p.image
-);
-
+  show("quiz");
+  loadQuestion();
 }
 
 
-/*
- 등번호는
- 전체 등록선수
-*/
-
-else{
-
-pool =
-[...players];
-
-}
-
-
-/*
- 복습
-*/
-
-if(customPlayers){
-
-pool =
-customPlayers.filter(
-p =>
-mode !== "face" ||
-p.face === true
-);
-
-questions =
-shuffle(pool);
-
-}
-
-
-/*
- 일반 게임은 랜덤 10명
-*/
-
-else{
-
-questions =
-shuffle(pool)
-.slice(0,10);
-
-}
-
-
-show("quiz");
-
-loadQuestion();
-
-}
-
-
-/* ==================================
-   LOAD
-================================== */
+/* ==============================
+   LOAD QUESTION
+============================== */
 
 function loadQuestion(){
 
-current =
-questions[index];
+  hardSubmitting = false;
+
+  current =
+    questions[index];
+
+  $("progress").textContent =
+    `${index + 1} / ${questions.length}`;
 
 
-$("progress")
-.textContent =
-`${index + 1} / ${questions.length}`;
+  $("badge").textContent =
+    level === "hard"
+    ? "🔥 HARD"
+    : "⚽ NORMAL";
 
 
-$("badge")
-.textContent =
-level === "hard"
-?
-"🔥 HARD"
-:
-"⚽ NORMAL";
+  $("badge").className =
+    level === "hard"
+    ? "badge hard"
+    : "badge normal";
 
 
-$("badge")
-.className =
-level === "hard"
-?
-"badge hard"
-:
-"badge normal";
+  /* FACE */
+
+  if(mode === "face"){
+
+    $("visual").innerHTML = `
+
+      <img
+        class="player-img"
+        src="${current.image}"
+        alt="선수 프로필 사진"
+        onerror="imageError()">
+
+    `;
+
+  }
 
 
-/* FACE */
+  /* NUMBER */
 
-if(
-mode === "face"
-){
+  else{
 
-$("visual")
-.innerHTML = `
+    $("visual").innerHTML = `
 
-<img
-class="player-img"
-src="${current.image}"
-alt="선수 프로필 사진"
-onerror="imageError()">
+      <div class="number">
+        ${current.number}
+      </div>
 
-`;
+    `;
+  }
 
+
+  /* NORMAL */
+
+  if(level === "normal"){
+
+    $("answers").style.display =
+      "grid";
+
+    $("hardBox").style.display =
+      "none";
+
+    createChoices();
+
+  }
+
+
+  /* HARD */
+
+  else{
+
+    $("answers").style.display =
+      "none";
+
+    $("hardBox").style.display =
+      "block";
+
+    $("nameInput").value = "";
+
+    setTimeout(() => {
+      $("nameInput").focus();
+    },100);
+  }
 }
 
 
-/* NUMBER */
-
-else{
-
-$("visual")
-.innerHTML = `
-
-<div class="number">
-
-${current.number}
-
-</div>
-
-`;
-
-}
-
-
-/* NORMAL */
-
-if(
-level === "normal"
-){
-
-$("answers")
-.style.display =
-"grid";
-
-$("hardBox")
-.style.display =
-"none";
-
-createChoices();
-
-}
-
-
-/* HARD */
-
-else{
-
-$("answers")
-.style.display =
-"none";
-
-$("hardBox")
-.style.display =
-"block";
-
-$("nameInput")
-.value = "";
-
-setTimeout(
-() =>
-$("nameInput").focus(),
-150
-);
-
-}
-
-}
-
-
-/* ==================================
+/* ==============================
    IMAGE ERROR
-
-   사진 오류가 발생하면
-   그 문제를 건너뛰고
-   다른 선수로 교체
-================================== */
+============================== */
 
 function imageError(){
 
-const unused =
-players.filter(
-p =>
-
-p.face === true
-
-&&
-
-p.image
-
-&&
-
-!questions.some(
-q =>
-q.name === p.name
-)
-
-);
+  const unused =
+    players.filter(
+      p =>
+      p.face === true &&
+      p.image &&
+      !questions.some(
+        q => q.name === p.name
+      )
+    );
 
 
-if(
-unused.length
-){
+  if(unused.length){
 
-questions[index] =
-shuffle(unused)[0];
+    questions[index] =
+      shuffle(unused)[0];
 
-loadQuestion();
+    loadQuestion();
 
-}
+  }else{
 
-else{
+    $("visual").innerHTML = `
 
-$("visual")
-.innerHTML = `
+      <div style="
+        align-self:center;
+        padding:30px;
+        text-align:center;
+        color:#b8cae0;
+      ">
+        사진을 불러오지 못했습니다.
+      </div>
 
-<div style="
-align-self:center;
-padding:30px;
-text-align:center;
-color:#b8cae0;
-">
-
-사진을 불러오지 못했습니다.<br>
-다음 문제로 넘어갑니다.
-
-</div>
-
-`;
-
-setTimeout(
-nextQuestion,
-800
-);
-
-}
-
+    `;
+  }
 }
 
 
-/* ==================================
+/* ==============================
    NORMAL CHOICES
-================================== */
+============================== */
 
 function createChoices(){
 
-let wrongChoices;
+  let wrongChoices;
 
 
-/* 한국 선수 */
+  /* 한국 선수 */
 
-if(
-!current.foreign
-){
+  if(!current.foreign){
 
-wrongChoices =
+    wrongChoices =
+      shuffle(
+        players.filter(
+          p =>
+          !p.foreign &&
+          p.name !== current.name
+        )
+      )
+      .slice(0,3);
 
-shuffle(
+  }
 
-players.filter(
-p =>
-!p.foreign &&
-p.name !== current.name
-)
 
-)
+  /* 외국인 선수 */
 
-.slice(0,3);
+  else{
 
+    wrongChoices =
+      shuffle(
+        players.filter(
+          p =>
+          p.foreign &&
+          p.name !== current.name
+        )
+      )
+      .slice(0,3);
+
+
+    if(wrongChoices.length < 3){
+
+      wrongChoices = [
+
+        ...wrongChoices,
+
+        ...shuffle(foreignDummy)
+          .slice(
+            0,
+            3 - wrongChoices.length
+          )
+
+      ];
+    }
+  }
+
+
+  const choices =
+    shuffle([
+      current,
+      ...wrongChoices
+    ]);
+
+
+  $("answers").innerHTML = "";
+
+
+  choices.forEach(player => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "answer";
+
+    button.textContent =
+      player.name;
+
+
+    button.onclick = () =>
+      checkNormal(
+        player,
+        button
+      );
+
+
+    $("answers")
+      .appendChild(button);
+
+  });
 }
 
 
-/* 외국인 선수 */
-
-else{
-
-wrongChoices =
-
-shuffle(
-
-players.filter(
-p =>
-p.foreign &&
-p.name !== current.name
-)
-
-)
-
-.slice(0,3);
-
-
-if(
-wrongChoices.length < 3
-){
-
-wrongChoices = [
-
-...wrongChoices,
-
-...shuffle(foreignDummy)
-.slice(
-0,
-3 - wrongChoices.length
-)
-
-];
-
-}
-
-}
-
-
-const choices =
-
-shuffle([
-
-current,
-...wrongChoices
-
-]);
-
-
-$("answers")
-.innerHTML = "";
-
-
-choices.forEach(
-player => {
-
-const button =
-document.createElement("button");
-
-button.className =
-"answer";
-
-button.textContent =
-player.name;
-
-
-button.onclick =
-() =>
-checkNormal(
-player,
-button
-);
-
-
-$("answers")
-.appendChild(
-button
-);
-
-});
-
-}
-
-
-/* ==================================
+/* ==============================
    NORMAL CHECK
-================================== */
+============================== */
 
 function checkNormal(
-selected,
-button
+  selected,
+  button
 ){
 
-const buttons = [
-
-...document
-.querySelectorAll(".answer")
-
-];
+  const buttons = [
+    ...document.querySelectorAll(".answer")
+  ];
 
 
-buttons.forEach(
-b =>
-b.disabled = true
-);
+  buttons.forEach(
+    b => b.disabled = true
+  );
 
 
-const correct =
-selected.name ===
-current.name;
+  const correct =
+    selected.name ===
+    current.name;
 
 
-if(correct){
+  if(correct){
 
-score++;
+    score++;
 
-button
-.classList
-.add("correct");
+    button
+      .classList
+      .add("correct");
 
-}
+  }else{
 
-else{
+    wrong.push(current);
 
-wrong.push(current);
-
-button
-.classList
-.add("wrong");
+    button
+      .classList
+      .add("wrong");
 
 
-const right =
-buttons.find(
-b =>
-b.textContent ===
-current.name
-);
+    const right =
+      buttons.find(
+        b =>
+        b.textContent ===
+        current.name
+      );
 
 
-if(right){
+    if(right){
 
-right
-.classList
-.add("correct");
-
-}
-
-}
+      right
+        .classList
+        .add("correct");
+    }
+  }
 
 
-setTimeout(
-() =>
-showProfile(
-correct
-),
-450
-);
-
+  setTimeout(
+    () =>
+    showProfile(correct),
+    450
+  );
 }
 
 
-/* ==================================
-   HARD NAME CHECK
-
-   브루노 실바
-   브루노실바
-   브루노   실바
-
-   모두 동일하게 처리
-================================== */
+/* ==============================
+   HARD NAME
+============================== */
 
 function normalizeName(value){
 
-return value
-
-.normalize("NFC")
-
-.trim()
-
-.replace(/\s+/g,"")
-
-.toLowerCase();
-
+  return value
+    .normalize("NFC")
+    .trim()
+    .replace(/\s+/g,"")
+    .toLowerCase();
 }
 
+
+/* ==============================
+   HARD CHECK
+============================== */
 
 function checkHard(){
 
-const typed =
-$("nameInput")
-.value;
+  if(hardSubmitting){
+    return;
+  }
 
 
-if(
-!typed.trim()
-){
+  const typed =
+    $("nameInput").value;
 
-$("nameInput")
-.focus();
 
-return;
+  if(!typed.trim()){
 
+    $("nameInput").focus();
+    return;
+  }
+
+
+  hardSubmitting = true;
+
+
+  const correct =
+
+    normalizeName(typed)
+
+    ===
+
+    normalizeName(
+      current.name
+    );
+
+
+  if(correct){
+
+    score++;
+
+  }else{
+
+    wrong.push(current);
+  }
+
+
+  showProfile(
+    correct,
+    typed
+  );
 }
 
 
-const correct =
-
-normalizeName(typed)
-
-===
-
-normalizeName(
-current.name
-);
-
-
-if(correct){
-
-score++;
-
-}
-
-else{
-
-wrong.push(current);
-
-}
-
-
-showProfile(
-correct,
-typed
-);
-
-}
-
-
-/* ENTER */
-
-$("nameInput")
-.addEventListener(
-"keydown",
-event => {
-
-if(
-event.key === "Enter"
-){
-
-checkHard();
-
-}
-
-});
-
-
-/* ==================================
+/* ==============================
    PROFILE
-================================== */
+============================== */
 
 function showProfile(
-correct,
-typed = ""
+  correct,
+  typed = ""
 ){
 
-show("profile");
+  show("profile");
 
 
-if(correct){
+  if(correct){
 
-$("resultLabel")
-.textContent =
-"⭕ 정답입니다!";
+    $("resultLabel")
+      .textContent =
+      "⭕ 정답입니다!";
 
-}
+  }
 
-else if(
-level === "hard"
-){
+  else if(level === "hard"){
 
-$("resultLabel")
-.innerHTML =
+    $("resultLabel")
+      .innerHTML =
 
-`❌ ${typed}<br>
-<span style="color:#8fb4df">
-정답은 ${current.name} 선수!
-</span>`;
+      `❌ ${typed}<br>
+      <span style="color:#8fb4df">
+      정답은 ${current.name} 선수!
+      </span>`;
 
-}
+  }
 
-else{
+  else{
 
-$("resultLabel")
-.textContent =
-
-`❌ 정답은 ${current.name} 선수!`;
-
-}
+    $("resultLabel")
+      .textContent =
+      `❌ 정답은 ${current.name} 선수!`;
+  }
 
 
-/*
- 사진이 있는 선수만 표시
-*/
+  if(current.image){
 
-if(current.image){
+    $("profileImg")
+      .style.display =
+      "block";
 
-$("profileImg")
-.style.display =
-"block";
+    $("profileImg")
+      .src =
+      current.image;
 
-$("profileImg")
-.src =
-current.image;
+  }else{
 
-}
-
-else{
-
-$("profileImg")
-.style.display =
-"none";
-
-}
+    $("profileImg")
+      .style.display =
+      "none";
+  }
 
 
-$("pNo")
-.textContent =
-"NO. " +
-current.number;
+  $("pNo").textContent =
+    "NO. " +
+    current.number;
 
 
-$("pName")
-.textContent =
-current.name;
+  $("pName").textContent =
+    current.name;
 
 
-$("pPos")
-.textContent =
-current.position || "수원삼성";
+  $("pPos").textContent =
+    current.position || "수원삼성";
 
 
-$("pNumber")
-.textContent =
-current.number;
+  $("pNumber").textContent =
+    current.number;
 
 
-$("pPosition")
-.textContent =
-current.position || "—";
+  $("pPosition").textContent =
+    current.position || "—";
 
 
-$("pBirth")
-.textContent =
-current.birth || "—";
+  $("pBirth").textContent =
+    current.birth || "—";
 
 
-$("pBody")
-.textContent =
-current.body || "—";
-
+  $("pBody").textContent =
+    current.body || "—";
 }
 
 
-/* ==================================
+/* ==============================
    NEXT
-================================== */
+============================== */
 
 function nextQuestion(){
 
-index++;
+  index++;
 
 
-if(
-index >=
-questions.length
-){
+  if(index >= questions.length){
 
-finish();
+    finish();
+    return;
+  }
 
-return;
 
+  show("quiz");
+  loadQuestion();
 }
 
 
-show("quiz");
-
-loadQuestion();
-
-}
-
-
-/* ==================================
+/* ==============================
    RESULT
-================================== */
+============================== */
 
 function finish(){
 
-show("result");
+  show("result");
 
 
-$("finalScore")
-.textContent =
-
-`${score} / ${questions.length}`;
+  $("finalScore").textContent =
+    `${score} / ${questions.length}`;
 
 
-const percent =
-
-Math.round(
-score /
-questions.length *
-100
-);
-
-
-$("scoreText")
-.textContent =
-
-`${lastLevel === "hard" ? "🔥 HARD" : "⚽ NORMAL"} · 정답률 ${percent}%`;
+  const percent =
+    Math.round(
+      score /
+      questions.length *
+      100
+    );
 
 
-const uniqueWrong = [
+  $("scoreText").textContent =
 
-...new Map(
-
-wrong.map(
-p => [
-p.name,
-p
-])
-
-).values()
-
-];
+    `${lastLevel === "hard" ? "🔥 HARD" : "⚽ NORMAL"} · 정답률 ${percent}%`;
 
 
-if(
-uniqueWrong.length
-){
+  const uniqueWrong = [
 
-$("wrongList")
-.innerHTML = `
+    ...new Map(
 
-<div style="
-color:#9fb5d2;
-margin-bottom:8px;
-">
+      wrong.map(
+        p => [
+          p.name,
+          p
+        ]
+      )
 
-이번 게임에서 틀린 선수
+    ).values()
 
-</div>
-
-`
-
-+
-
-uniqueWrong
-.map(
-p => `
-
-<span class="wrong-chip">
-
-NO.${p.number}
-${p.name}
-
-</span>
-
-`
-)
-.join("");
+  ];
 
 
-$("retryWrong")
-.style.display =
-"block";
+  if(uniqueWrong.length){
+
+    $("wrongList").innerHTML = `
+
+      <div style="
+        color:#9fb5d2;
+        margin-bottom:8px;
+      ">
+        이번 게임에서 틀린 선수
+      </div>
+
+    `
+
+    +
+
+    uniqueWrong
+      .map(
+        p => `
+
+        <span class="wrong-chip">
+          NO.${p.number} ${p.name}
+        </span>
+
+        `
+      )
+      .join("");
 
 
-$("retryWrong")
-.onclick =
-() =>
-startGame(
-lastMode,
-lastLevel,
-uniqueWrong
-);
-
-}
-
-else{
-
-$("wrongList")
-.innerHTML = `
-
-<div style="
-text-align:center;
-font-size:18px;
-">
-
-🏆 10문제 전부 맞혔어요!
-
-</div>
-
-`;
+    $("retryWrong")
+      .style.display =
+      "block";
 
 
-$("retryWrong")
-.style.display =
-"none";
+    $("retryWrong")
+      .onclick = () =>
+      startGame(
+        lastMode,
+        lastLevel,
+        uniqueWrong
+      );
 
-}
+  }
 
+  else{
+
+    $("wrongList")
+      .innerHTML = `
+
+      <div style="
+        text-align:center;
+        font-size:18px;
+      ">
+        🏆 10문제 전부 맞혔어요!
+      </div>
+
+      `;
+
+
+    $("retryWrong")
+      .style.display =
+      "none";
+  }
 }
 
 
-/* ==================================
+/* ==============================
    BUTTONS
-================================== */
+============================== */
 
-$("startBtn")
-.onclick =
-() =>
-show("menu");
+$("startBtn").onclick =
+() => show("menu");
 
 
 document
 .querySelectorAll(".game-card")
-.forEach(
-button => {
+.forEach(button => {
 
-button.onclick =
-() => {
+  button.onclick = () => {
 
-startGame(
+    startGame(
+      button.dataset.mode,
+      button.dataset.level
+    );
 
-button.dataset.mode,
-
-button.dataset.level
-
-);
-
-};
+  };
 
 });
 
 
-$("menuBtn")
-.onclick =
-() =>
-show("menu");
+$("menuBtn").onclick =
+() => show("menu");
 
 
-$("submitBtn")
-.onclick =
-checkHard;
+$("submitBtn").onclick =
+() => checkHard();
 
 
-$("nextBtn")
-.onclick =
-nextQuestion;
+$("nextBtn").onclick =
+() => nextQuestion();
 
 
-$("newGameBtn")
-.onclick =
+$("newGameBtn").onclick =
 () =>
 startGame(
-lastMode,
-lastLevel
+  lastMode,
+  lastLevel
 );
 
 
-$("homeBtn")
-.onclick =
-() =>
-show("menu");
+$("homeBtn").onclick =
+() => show("menu");
+
+
+/* =================================
+   KEYBOARD CONTROL
+================================= */
+
+document.addEventListener(
+"keydown",
+function(event){
+
+  if(event.key !== "Enter"){
+    return;
+  }
+
+
+  const activeScreen =
+    document.querySelector(
+      ".screen.active"
+    );
+
+
+  if(!activeScreen){
+    return;
+  }
+
+
+  /* START
+     Enter → 게임 선택
+  */
+
+  if(activeScreen.id === "splash"){
+
+    event.preventDefault();
+
+    show("menu");
+
+    return;
+  }
+
+
+  /* HARD QUIZ
+     이름 입력 후
+     Enter → 정답 확인
+  */
+
+  if(
+    activeScreen.id === "quiz" &&
+    level === "hard"
+  ){
+
+    event.preventDefault();
+
+    checkHard();
+
+    return;
+  }
+
+
+  /* PROFILE
+     Enter → 다음 선수
+  */
+
+  if(activeScreen.id === "profile"){
+
+    event.preventDefault();
+
+    nextQuestion();
+
+    return;
+  }
+
+});
 
 </script>
 
