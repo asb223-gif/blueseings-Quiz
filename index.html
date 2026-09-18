@@ -1822,135 +1822,181 @@ show("menu");
 
 
 /* ==================================
-   KEYBOARD CONTROL v11
+   KEYBOARD CONTROL v12
 ================================== */
 
-document.addEventListener(
-"keydown",
-function(event){
+document.addEventListener("keydown", function(event){
 
-const activeScreen =
-document.querySelector(
-".screen.active"
-);
+  const activeScreen =
+    document.querySelector(".screen.active");
 
+  if(!activeScreen){
+    return;
+  }
 
-if(!activeScreen){
-return;
-}
+  const isSpace =
+    event.code === "Space" ||
+    event.key === " " ||
+    event.key === "Spacebar";
 
-
-/* ==========================
-   NORMAL QUIZ
-
-   1 / 2 / 3 / 4
-========================== */
-
-if(
-activeScreen.id === "quiz"
-&&
-level === "normal"
-){
-
-if(
-["1","2","3","4"]
-.includes(event.key)
-){
-
-event.preventDefault();
-
-selectNormalByNumber(
-Number(event.key)
-);
-
-return;
-
-}
-
-}
+  const isEnter =
+    event.key === "Enter";
 
 
-/* ==========================
-   HARD QUIZ
+  /* =================================
+     SPACE 기본 스크롤 완전 차단
 
-   Enter = 정답 제출
+     단, Hard 이름 입력창에서는
+     띄어쓰기를 입력할 수 있어야 함
+  ================================= */
 
-   Space는 이름 입력에
-   사용해야 하므로
-   제출 기능 사용 안 함
-========================== */
-
-if(
-activeScreen.id === "quiz"
-&&
-level === "hard"
-&&
-event.key === "Enter"
-){
-
-event.preventDefault();
-
-checkHard();
-
-return;
-
-}
+  if(
+    isSpace &&
+    !(
+      activeScreen.id === "quiz" &&
+      level === "hard" &&
+      document.activeElement === $("nameInput")
+    )
+  ){
+    event.preventDefault();
+  }
 
 
-/* ==========================
-   START SCREEN
+  /* 키를 꾹 눌렀을 때
+     연속으로 다음 문제 넘어가는 것 방지 */
 
-   Enter 또는 Space
-========================== */
-
-if(
-activeScreen.id === "splash"
-&&
-(
-event.key === "Enter"
-||
-event.code === "Space"
-)
-){
-
-event.preventDefault();
-
-show("menu");
-
-return;
-
-}
+  if(event.repeat){
+    return;
+  }
 
 
-/* ==========================
-   PROFILE
+  /* =================================
+     NORMAL QUIZ
 
-   Enter 또는 Space
-   = 다음 선수
-========================== */
+     1 / 2 / 3 / 4
+     보기 선택
+  ================================= */
 
-if(
-activeScreen.id === "profile"
-&&
-(
-event.key === "Enter"
-||
-event.code === "Space"
-)
-){
+  if(
+    activeScreen.id === "quiz" &&
+    level === "normal" &&
+    ["1","2","3","4"].includes(event.key)
+  ){
 
-event.preventDefault();
+    event.preventDefault();
 
-nextQuestion();
+    selectNormalByNumber(
+      Number(event.key)
+    );
 
-return;
+    return;
+  }
 
-}
 
-}
-);
+  /* =================================
+     HARD QUIZ
 
-</script>
+     Enter = 정답 확인
+
+     Space는 선수 이름 띄어쓰기용
+  ================================= */
+
+  if(
+    activeScreen.id === "quiz" &&
+    level === "hard" &&
+    isEnter
+  ){
+
+    event.preventDefault();
+
+    checkHard();
+
+    return;
+  }
+
+
+  /* =================================
+     시작 화면
+
+     Enter / Space = 게임 선택화면
+  ================================= */
+
+  if(
+    activeScreen.id === "splash" &&
+    (isEnter || isSpace)
+  ){
+
+    event.preventDefault();
+
+    show("menu");
+
+    return;
+  }
+
+
+  /* =================================
+     선수 프로필 화면
+
+     Enter / Space = 다음 선수
+
+     ★ 이번 수정의 핵심
+  ================================= */
+
+  if(
+    activeScreen.id === "profile" &&
+    (isEnter || isSpace)
+  ){
+
+    event.preventDefault();
+
+    nextQuestion();
+
+    return;
+  }
+
+});
+
+
+/* ==================================
+   SPACE KEYUP도 스크롤 차단
+================================== */
+
+document.addEventListener("keyup", function(event){
+
+  const activeScreen =
+    document.querySelector(".screen.active");
+
+  if(!activeScreen){
+    return;
+  }
+
+
+  const isSpace =
+    event.code === "Space" ||
+    event.key === " " ||
+    event.key === "Spacebar";
+
+
+  if(!isSpace){
+    return;
+  }
+
+
+  /* Hard 이름 입력창에서는
+     Space를 정상적인 띄어쓰기로 사용 */
+
+  if(
+    activeScreen.id === "quiz" &&
+    level === "hard" &&
+    document.activeElement === $("nameInput")
+  ){
+    return;
+  }
+
+
+  event.preventDefault();
+
+});
 
 </body>
 </html>
