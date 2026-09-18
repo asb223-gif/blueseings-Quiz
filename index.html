@@ -22,11 +22,16 @@
   -webkit-tap-highlight-color:transparent;
 }
 
+html{
+  background:#06152e;
+}
+
 body{
   margin:0;
   background:var(--deep);
   color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR",sans-serif;
+  overscroll-behavior:none;
 }
 
 button,input{
@@ -525,6 +530,7 @@ button{
     min-height:135px;
     padding:17px 13px;
   }
+
 }
 
 </style>
@@ -537,9 +543,9 @@ button{
 <section id="splash" class="screen active">
 
 <img
-class="crest"
-src="https://www.kleague.com/assets/images/emblem/emblem_K02.png"
-alt="수원삼성">
+  class="crest"
+  src="https://www.kleague.com/assets/images/emblem/emblem_K02.png"
+  alt="수원삼성">
 
 <div class="brand">
 SUWON BLUEWINGS
@@ -554,7 +560,7 @@ PLAYER QUIZ
 </button>
 
 <div class="enter-hint">
-PC에서는 Enter 또는 Space로 시작
+Enter / Space 로 시작
 </div>
 
 </section>
@@ -581,6 +587,7 @@ PC에서는 Enter 또는 Space로 시작
 
 </div>
 
+
 <div class="mode-title">
 👤 얼굴 보고 맞히기
 </div>
@@ -588,9 +595,9 @@ PC에서는 Enter 또는 Space로 시작
 <div class="mode-row">
 
 <button
-class="game-card"
-data-mode="face"
-data-level="normal">
+  class="game-card"
+  data-mode="face"
+  data-level="normal">
 
 <div class="icon">⚽</div>
 <b>Normal</b>
@@ -602,10 +609,11 @@ data-level="normal">
 
 </button>
 
+
 <button
-class="game-card hard"
-data-mode="face"
-data-level="hard">
+  class="game-card hard"
+  data-mode="face"
+  data-level="hard">
 
 <div class="icon">🔥</div>
 <b>Hard</b>
@@ -627,9 +635,9 @@ data-level="hard">
 <div class="mode-row">
 
 <button
-class="game-card"
-data-mode="number"
-data-level="normal">
+  class="game-card"
+  data-mode="number"
+  data-level="normal">
 
 <div class="icon">⚽</div>
 <b>Normal</b>
@@ -641,10 +649,11 @@ data-level="normal">
 
 </button>
 
+
 <button
-class="game-card hard"
-data-mode="number"
-data-level="hard">
+  class="game-card hard"
+  data-mode="number"
+  data-level="hard">
 
 <div class="icon">🔥</div>
 <b>Hard</b>
@@ -686,28 +695,29 @@ data-level="hard">
 <div class="answers" id="answers"></div>
 
 <div
-id="normalKeyboardHelp"
-class="keyboard-help">
+  id="normalKeyboardHelp"
+  class="keyboard-help">
 키보드 1 · 2 · 3 · 4 로 선택
 </div>
+
 
 <div class="hard-box" id="hardBox">
 
 <input
-id="nameInput"
-class="name-input"
-type="text"
-autocomplete="off"
-autocorrect="off"
-spellcheck="false"
-placeholder="선수 이름 입력">
+  id="nameInput"
+  class="name-input"
+  type="text"
+  autocomplete="off"
+  autocorrect="off"
+  spellcheck="false"
+  placeholder="선수 이름 입력">
 
 <button id="submitBtn" class="submit">
 정답 확인
 </button>
 
 <div class="help">
-띄어쓰기는 무시됩니다 · Enter로 정답 확인
+띄어쓰기 무시 · Enter로 정답 확인
 </div>
 
 </div>
@@ -730,7 +740,9 @@ placeholder="선수 이름 입력">
 <div class="profile-body">
 
 <div id="pNo" class="no"></div>
+
 <div id="pName" class="name"></div>
+
 <div id="pPos" class="pos"></div>
 
 <div class="grid">
@@ -786,21 +798,21 @@ QUIZ COMPLETE
 <div id="wrongList" class="wrong-list"></div>
 
 <button
-id="retryWrong"
-class="primary"
-style="display:none">
+  id="retryWrong"
+  class="primary"
+  style="display:none">
 틀린 선수 다시 풀기
 </button>
 
 <button
-id="newGameBtn"
-class="primary secondary">
+  id="newGameBtn"
+  class="primary secondary">
 새로운 랜덤 10명
 </button>
 
 <button
-id="homeBtn"
-class="primary third">
+  id="homeBtn"
+  class="primary third">
 게임 선택으로
 </button>
 
@@ -810,7 +822,7 @@ class="primary third">
 <script>
 
 /* ==============================
-   PLAYER IMAGE
+   IMAGE
 ============================== */
 
 const K02 =
@@ -979,12 +991,14 @@ image:"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20260364.png"
 ============================== */
 
 const foreignDummy = [
+
 {name:"세징야",foreign:true},
 {name:"라마스",foreign:true},
 {name:"오베르단",foreign:true},
 {name:"가브리엘",foreign:true},
 {name:"플라나",foreign:true},
 {name:"마테우스",foreign:true}
+
 ];
 
 
@@ -1017,17 +1031,19 @@ document.getElementById(id);
 
 function show(id){
 
-document
-.querySelectorAll(".screen")
-.forEach(
-screen =>
-screen.classList.remove("active")
-);
+  document
+  .querySelectorAll(".screen")
+  .forEach(screen => {
+    screen.classList.remove("active");
+  });
 
-$(id)
-.classList.add("active");
+  $(id).classList.add("active");
 
-window.scrollTo(0,0);
+  window.scrollTo({
+    top:0,
+    left:0,
+    behavior:"instant"
+  });
 
 }
 
@@ -1038,21 +1054,21 @@ window.scrollTo(0,0);
 
 function shuffle(array){
 
-const a = [...array];
+  const a = [...array];
 
-for(let i = a.length - 1; i > 0; i--){
+  for(let i=a.length-1;i>0;i--){
 
-const j =
-Math.floor(
-Math.random() * (i + 1)
-);
+    const j =
+    Math.floor(
+      Math.random()*(i+1)
+    );
 
-[a[i],a[j]] =
-[a[j],a[i]];
+    [a[i],a[j]] =
+    [a[j],a[i]];
 
-}
+  }
 
-return a;
+  return a;
 
 }
 
@@ -1062,64 +1078,63 @@ return a;
 ============================== */
 
 function startGame(
-gameMode,
-gameLevel,
-customPlayers = null
+  gameMode,
+  gameLevel,
+  customPlayers=null
 ){
 
-mode = gameMode;
-level = gameLevel;
+  mode=gameMode;
+  level=gameLevel;
 
-lastMode = mode;
-lastLevel = level;
+  lastMode=mode;
+  lastLevel=level;
 
-index = 0;
-score = 0;
-wrong = [];
+  index=0;
+  score=0;
+  wrong=[];
 
-let pool;
-
-
-if(mode === "face"){
-
-pool =
-players.filter(
-p =>
-p.face === true &&
-p.image
-);
-
-}else{
-
-pool = [...players];
-
-}
+  let pool;
 
 
-if(customPlayers){
+  if(mode==="face"){
 
-pool =
-customPlayers.filter(
-p =>
-mode !== "face" ||
-p.face === true
-);
+    pool =
+    players.filter(
+      p =>
+      p.face === true &&
+      p.image
+    );
 
-questions =
-shuffle(pool);
+  }else{
 
-}else{
+    pool=[...players];
 
-questions =
-shuffle(pool)
-.slice(0,10);
-
-}
+  }
 
 
-show("quiz");
+  if(customPlayers){
 
-loadQuestion();
+    pool =
+    customPlayers.filter(
+      p =>
+      mode !== "face" ||
+      p.face === true
+    );
+
+    questions =
+    shuffle(pool);
+
+  }else{
+
+    questions =
+    shuffle(pool).slice(0,10);
+
+  }
+
+
+  show("quiz");
+
+  loadQuestion();
 
 }
 
@@ -1130,88 +1145,78 @@ loadQuestion();
 
 function loadQuestion(){
 
-hardSubmitting = false;
-normalSubmitting = false;
+  hardSubmitting=false;
+  normalSubmitting=false;
 
-current =
-questions[index];
-
-
-$("progress").textContent =
-`${index + 1} / ${questions.length}`;
+  current=questions[index];
 
 
-$("badge").textContent =
-level === "hard"
-? "🔥 HARD"
-: "⚽ NORMAL";
+  $("progress").textContent =
+  `${index+1} / ${questions.length}`;
 
 
-$("badge").className =
-level === "hard"
-? "badge hard"
-: "badge normal";
+  $("badge").textContent =
+  level==="hard"
+  ? "🔥 HARD"
+  : "⚽ NORMAL";
 
 
-if(mode === "face"){
-
-$("visual").innerHTML = `
-
-<img
-class="player-img"
-src="${current.image}"
-alt="선수 프로필 사진"
-onerror="imageError()">
-
-`;
-
-}else{
-
-$("visual").innerHTML = `
-
-<div class="number">
-${current.number}
-</div>
-
-`;
-
-}
+  $("badge").className =
+  level==="hard"
+  ? "badge hard"
+  : "badge normal";
 
 
-if(level === "normal"){
+  if(mode==="face"){
 
-$("answers").style.display =
-"grid";
+    $("visual").innerHTML=`
 
-$("normalKeyboardHelp").style.display =
-"block";
+    <img
+      class="player-img"
+      src="${current.image}"
+      alt="선수 프로필 사진"
+      onerror="imageError()">
 
-$("hardBox").style.display =
-"none";
+    `;
 
-createChoices();
+  }else{
 
-}else{
+    $("visual").innerHTML=`
 
-$("answers").style.display =
-"none";
+    <div class="number">
+      ${current.number}
+    </div>
 
-$("normalKeyboardHelp").style.display =
-"none";
+    `;
 
-$("hardBox").style.display =
-"block";
+  }
 
-$("nameInput").value = "";
 
-setTimeout(
-() => {
-$("nameInput").focus();
-},
-100
-);
+  if(level==="normal"){
 
-}
+    $("answers").style.display="grid";
+
+    $("normalKeyboardHelp").style.display="block";
+
+    $("hardBox").style.display="none";
+
+    createChoices();
+
+  }else{
+
+    $("answers").style.display="none";
+
+    $("normalKeyboardHelp").style.display="none";
+
+    $("hardBox").style.display="block";
+
+    $("nameInput").value="";
+
+    setTimeout(()=>{
+      $("nameInput").focus();
+    },100);
+
+  }
 
 }
 
@@ -1222,42 +1227,40 @@ $("nameInput").focus();
 
 function imageError(){
 
-const unused =
-players.filter(
-p =>
-p.face === true &&
-p.image &&
-!questions.some(
-q => q.name === p.name
-)
-);
+  const unused =
+  players.filter(
+    p =>
+    p.face === true &&
+    p.image &&
+    !questions.some(
+      q => q.name === p.name
+    )
+  );
 
 
-if(unused.length){
+  if(unused.length){
 
-questions[index] =
-shuffle(unused)[0];
+    questions[index] =
+    shuffle(unused)[0];
 
-loadQuestion();
+    loadQuestion();
 
-}else{
+  }else{
 
-$("visual").innerHTML = `
+    $("visual").innerHTML=`
 
-<div style="
-align-self:center;
-padding:30px;
-text-align:center;
-color:#b8cae0;
-">
+    <div style="
+      align-self:center;
+      padding:30px;
+      text-align:center;
+      color:#b8cae0;
+    ">
+      사진을 불러오지 못했습니다.
+    </div>
 
-사진을 불러오지 못했습니다.
+    `;
 
-</div>
-
-`;
-
-}
+  }
 
 }
 
@@ -1268,100 +1271,101 @@ color:#b8cae0;
 
 function createChoices(){
 
-let wrongChoices;
+  let wrongChoices;
 
 
-if(!current.foreign){
+  if(!current.foreign){
 
-wrongChoices =
-shuffle(
-players.filter(
-p =>
-!p.foreign &&
-p.name !== current.name
-)
-)
-.slice(0,3);
+    wrongChoices =
+    shuffle(
+      players.filter(
+        p =>
+        !p.foreign &&
+        p.name !== current.name
+      )
+    ).slice(0,3);
 
-}else{
+  }else{
 
-wrongChoices =
-shuffle(
-players.filter(
-p =>
-p.foreign &&
-p.name !== current.name
-)
-)
-.slice(0,3);
+    wrongChoices =
+    shuffle(
+      players.filter(
+        p =>
+        p.foreign &&
+        p.name !== current.name
+      )
+    ).slice(0,3);
 
 
-if(wrongChoices.length < 3){
+    if(wrongChoices.length<3){
 
-wrongChoices = [
+      wrongChoices=[
 
-...wrongChoices,
+        ...wrongChoices,
 
-...shuffle(foreignDummy)
-.slice(
-0,
-3 - wrongChoices.length
-)
+        ...shuffle(foreignDummy)
+        .slice(
+          0,
+          3-wrongChoices.length
+        )
 
-];
+      ];
 
-}
+    }
 
-}
-
-
-const choices =
-shuffle([
-current,
-...wrongChoices
-]);
+  }
 
 
-$("answers").innerHTML = "";
+  const choices =
+  shuffle([
+    current,
+    ...wrongChoices
+  ]);
 
 
-choices.forEach(
-(player,choiceIndex) => {
-
-const button =
-document.createElement("button");
-
-button.className =
-"answer";
-
-button.dataset.choice =
-choiceIndex + 1;
-
-button.innerHTML = `
-
-<span class="answer-key">
-${choiceIndex + 1}
-</span>
-
-<span>
-${player.name}
-</span>
-
-`;
+  $("answers").innerHTML="";
 
 
-button.onclick =
-() =>
-checkNormal(
-player,
-button
-);
+  choices.forEach(
+    (player,choiceIndex)=>{
+
+      const button =
+      document.createElement("button");
+
+      button.className="answer";
+
+      button.dataset.choice =
+      choiceIndex+1;
 
 
-$("answers")
-.appendChild(button);
+      button.innerHTML=`
 
-});
+      <span class="answer-key">
+        ${choiceIndex+1}
+      </span>
+
+      <span>
+        ${player.name}
+      </span>
+
+      `;
+
+
+      button.onclick=()=>{
+
+        checkNormal(
+          player,
+          button
+        );
+
+      };
+
+
+      $("answers")
+      .appendChild(button);
+
+    }
+  );
 
 }
 
@@ -1371,85 +1375,73 @@ $("answers")
 ============================== */
 
 function checkNormal(
-selected,
-button
+  selected,
+  button
 ){
 
-if(normalSubmitting){
-return;
-}
+  if(normalSubmitting){
+    return;
+  }
 
-normalSubmitting = true;
-
-
-const buttons = [
-...document.querySelectorAll(".answer")
-];
+  normalSubmitting=true;
 
 
-buttons.forEach(
-b => b.disabled = true
-);
+  const buttons=[
+    ...document.querySelectorAll(".answer")
+  ];
 
 
-const correct =
-selected.name ===
-current.name;
+  buttons.forEach(
+    b=>b.disabled=true
+  );
 
 
-if(correct){
-
-score++;
-
-button
-.classList
-.add("correct");
-
-}else{
-
-wrong.push(current);
-
-button
-.classList
-.add("wrong");
+  const correct =
+  selected.name === current.name;
 
 
-const right =
-buttons.find(
-b => {
+  if(correct){
 
-const name =
-b.querySelector(
-"span:last-child"
-);
+    score++;
 
-return (
-name &&
-name.textContent.trim()
-===
-current.name
-);
+    button.classList.add("correct");
 
-}
-);
+  }else{
+
+    wrong.push(current);
+
+    button.classList.add("wrong");
 
 
-if(right){
+    const right =
+    buttons.find(b=>{
 
-right
-.classList
-.add("correct");
+      const name =
+      b.querySelector("span:last-child");
 
-}
+      return (
+        name &&
+        name.textContent.trim() ===
+        current.name
+      );
 
-}
+    });
 
 
-setTimeout(
-() =>
-showProfile(correct),
-450
-);
+    if(right){
+
+      right.classList.add("correct");
+
+    }
+
+  }
+
+
+  setTimeout(()=>{
+
+    showProfile(correct);
+
+  },450);
 
 }
 
@@ -1460,47 +1452,47 @@ showProfile(correct),
 
 function selectNormalByNumber(number){
 
-if(level !== "normal"){
-return;
-}
+  if(level!=="normal"){
+    return;
+  }
 
-if(normalSubmitting){
-return;
-}
-
-
-const buttons = [
-...document.querySelectorAll(
-"#answers .answer"
-)
-];
+  if(normalSubmitting){
+    return;
+  }
 
 
-const button =
-buttons[number - 1];
+  const buttons=[
+    ...document.querySelectorAll(
+      "#answers .answer"
+    )
+  ];
 
 
-if(!button){
-return;
-}
+  const button =
+  buttons[number-1];
 
 
-button.click();
+  if(!button){
+    return;
+  }
+
+
+  button.click();
 
 }
 
 
 /* ==============================
-   HARD NAME
+   NAME NORMALIZE
 ============================== */
 
 function normalizeName(value){
 
-return value
-.normalize("NFC")
-.trim()
-.replace(/\s+/g,"")
-.toLowerCase();
+  return value
+  .normalize("NFC")
+  .trim()
+  .replace(/\s+/g,"")
+  .toLowerCase();
 
 }
 
@@ -1511,48 +1503,51 @@ return value
 
 function checkHard(){
 
-if(hardSubmitting){
-return;
-}
+  if(hardSubmitting){
+    return;
+  }
 
 
-const typed =
-$("nameInput").value;
+  const typed =
+  $("nameInput").value;
 
 
-if(!typed.trim()){
+  if(!typed.trim()){
 
-$("nameInput").focus();
+    $("nameInput").focus();
 
-return;
+    return;
 
-}
-
-
-hardSubmitting = true;
+  }
 
 
-const correct =
-normalizeName(typed)
-===
-normalizeName(current.name);
+  hardSubmitting=true;
 
 
-if(correct){
+  const correct =
 
-score++;
+  normalizeName(typed)
 
-}else{
+  ===
 
-wrong.push(current);
-
-}
+  normalizeName(current.name);
 
 
-showProfile(
-correct,
-typed
-);
+  if(correct){
+
+    score++;
+
+  }else{
+
+    wrong.push(current);
+
+  }
+
+
+  showProfile(
+    correct,
+    typed
+  );
 
 }
 
@@ -1562,75 +1557,78 @@ typed
 ============================== */
 
 function showProfile(
-correct,
-typed = ""
+  correct,
+  typed=""
 ){
 
-show("profile");
+  show("profile");
 
 
-if(correct){
+  if(correct){
 
-$("resultLabel").textContent =
-"⭕ 정답입니다!";
+    $("resultLabel").textContent =
+    "⭕ 정답입니다!";
 
-}
+  }
 
-else if(level === "hard"){
+  else if(level==="hard"){
 
-$("resultLabel").innerHTML =
+    $("resultLabel").innerHTML=`
 
-`❌ ${typed}<br>
-<span style="color:#8fb4df">
-정답은 ${current.name} 선수!
-</span>`;
+    ❌ ${typed}<br>
 
-}
+    <span style="color:#8fb4df">
+      정답은 ${current.name} 선수!
+    </span>
 
-else{
+    `;
 
-$("resultLabel").textContent =
-`❌ 정답은 ${current.name} 선수!`;
+  }
 
-}
+  else{
 
+    $("resultLabel").textContent =
+    `❌ 정답은 ${current.name} 선수!`;
 
-if(current.image){
-
-$("profileImg").style.display =
-"block";
-
-$("profileImg").src =
-current.image;
-
-}else{
-
-$("profileImg").style.display =
-"none";
-
-}
+  }
 
 
-$("pNo").textContent =
-"NO. " + current.number;
+  if(current.image){
 
-$("pName").textContent =
-current.name;
+    $("profileImg").style.display =
+    "block";
 
-$("pPos").textContent =
-current.position || "수원삼성";
+    $("profileImg").src =
+    current.image;
 
-$("pNumber").textContent =
-current.number;
+  }else{
 
-$("pPosition").textContent =
-current.position || "—";
+    $("profileImg").style.display =
+    "none";
 
-$("pBirth").textContent =
-current.birth || "—";
+  }
 
-$("pBody").textContent =
-current.body || "—";
+
+  $("pNo").textContent =
+  "NO. "+current.number;
+
+  $("pName").textContent =
+  current.name;
+
+  $("pPos").textContent =
+  current.position || "수원삼성";
+
+  $("pNumber").textContent =
+  current.number;
+
+  $("pPosition").textContent =
+  current.position || "—";
+
+  $("pBirth").textContent =
+  current.birth || "—";
+
+  $("pBody").textContent =
+  current.body || "—";
 
 }
 
@@ -1641,21 +1639,21 @@ current.body || "—";
 
 function nextQuestion(){
 
-index++;
+  index++;
 
 
-if(index >= questions.length){
+  if(index>=questions.length){
 
-finish();
+    finish();
 
-return;
+    return;
 
-}
+  }
 
 
-show("quiz");
+  show("quiz");
 
-loadQuestion();
+  loadQuestion();
 
 }
 
@@ -1666,102 +1664,102 @@ loadQuestion();
 
 function finish(){
 
-show("result");
+  show("result");
 
 
-$("finalScore").textContent =
-`${score} / ${questions.length}`;
+  $("finalScore").textContent =
+  `${score} / ${questions.length}`;
 
 
-const percent =
-Math.round(
-score /
-questions.length *
-100
-);
+  const percent =
+  Math.round(
+    score /
+    questions.length *
+    100
+  );
 
 
-$("scoreText").textContent =
+  $("scoreText").textContent =
 
-`${lastLevel === "hard" ? "🔥 HARD" : "⚽ NORMAL"} · 정답률 ${percent}%`;
-
-
-const uniqueWrong = [
-
-...new Map(
-wrong.map(
-p => [
-p.name,
-p
-]
-)
-).values()
-
-];
+  `${lastLevel==="hard" ? "🔥 HARD" : "⚽ NORMAL"} · 정답률 ${percent}%`;
 
 
-if(uniqueWrong.length){
+  const uniqueWrong=[
 
-$("wrongList").innerHTML = `
+    ...new Map(
 
-<div style="
-color:#9fb5d2;
-margin-bottom:8px;
-">
+      wrong.map(
+        p=>[
+          p.name,
+          p
+        ]
+      )
 
-이번 게임에서 틀린 선수
+    ).values()
 
-</div>
-
-`
-
-+
-
-uniqueWrong
-.map(
-p => `
-
-<span class="wrong-chip">
-NO.${p.number} ${p.name}
-</span>
-
-`
-)
-.join("");
+  ];
 
 
-$("retryWrong").style.display =
-"block";
+  if(uniqueWrong.length){
+
+    $("wrongList").innerHTML=`
+
+    <div style="
+      color:#9fb5d2;
+      margin-bottom:8px;
+    ">
+      이번 게임에서 틀린 선수
+    </div>
+
+    `
+
+    +
+
+    uniqueWrong
+    .map(
+      p=>`
+
+      <span class="wrong-chip">
+        NO.${p.number} ${p.name}
+      </span>
+
+      `
+    )
+    .join("");
 
 
-$("retryWrong").onclick =
-() =>
-startGame(
-lastMode,
-lastLevel,
-uniqueWrong
-);
-
-}else{
-
-$("wrongList").innerHTML = `
-
-<div style="
-text-align:center;
-font-size:18px;
-">
-
-🏆 10문제 전부 맞혔어요!
-
-</div>
-
-`;
+    $("retryWrong").style.display =
+    "block";
 
 
-$("retryWrong").style.display =
-"none";
+    $("retryWrong").onclick=()=>{
 
-}
+      startGame(
+        lastMode,
+        lastLevel,
+        uniqueWrong
+      );
+
+    };
+
+  }else{
+
+    $("wrongList").innerHTML=`
+
+    <div style="
+      text-align:center;
+      font-size:18px;
+    ">
+      🏆 10문제 전부 맞혔어요!
+    </div>
+
+    `;
+
+
+    $("retryWrong").style.display =
+    "none";
+
+  }
 
 }
 
@@ -1770,159 +1768,160 @@ $("retryWrong").style.display =
    BUTTONS
 ============================== */
 
-$("startBtn").onclick =
-() =>
-show("menu");
+$("startBtn").onclick=()=>{
+
+  show("menu");
+
+};
 
 
 document
 .querySelectorAll(".game-card")
-.forEach(
-button => {
+.forEach(button=>{
 
-button.onclick =
-() => {
+  button.onclick=()=>{
 
-startGame(
-button.dataset.mode,
-button.dataset.level
-);
+    startGame(
+      button.dataset.mode,
+      button.dataset.level
+    );
 
-};
+  };
 
 });
 
 
-$("menuBtn").onclick =
-() =>
-show("menu");
+$("menuBtn").onclick=()=>{
+
+  show("menu");
+
+};
 
 
-$("submitBtn").onclick =
-() =>
-checkHard();
+$("submitBtn").onclick=()=>{
+
+  checkHard();
+
+};
 
 
-$("nextBtn").onclick =
-() =>
-nextQuestion();
+$("nextBtn").onclick=()=>{
+
+  nextQuestion();
+
+};
 
 
-$("newGameBtn").onclick =
-() =>
-startGame(
-lastMode,
-lastLevel
-);
+$("newGameBtn").onclick=()=>{
+
+  startGame(
+    lastMode,
+    lastLevel
+  );
+
+};
 
 
-$("homeBtn").onclick =
-() =>
-show("menu");
+$("homeBtn").onclick=()=>{
+
+  show("menu");
+
+};
 
 
-/* ==================================
-   KEYBOARD CONTROL v12
-================================== */
+/* =================================================
+   KEYBOARD CONTROL v13
 
-document.addEventListener("keydown", function(event){
+   ★ 키보드 처리는 여기 한 곳에서만 담당
+================================================= */
+
+document.addEventListener(
+"keydown",
+function(event){
 
   const activeScreen =
-    document.querySelector(".screen.active");
+  document.querySelector(
+    ".screen.active"
+  );
+
 
   if(!activeScreen){
     return;
   }
 
-  const isSpace =
-    event.code === "Space" ||
-    event.key === " " ||
-    event.key === "Spacebar";
+
+  const screen =
+  activeScreen.id;
+
 
   const isEnter =
-    event.key === "Enter";
+  event.key === "Enter";
 
 
-  /* =================================
-     SPACE 기본 스크롤 완전 차단
+  const isSpace =
+  event.code === "Space" ||
+  event.key === " " ||
+  event.key === "Spacebar";
 
-     단, Hard 이름 입력창에서는
-     띄어쓰기를 입력할 수 있어야 함
-  ================================= */
+
+  const hardInputActive =
+
+  screen === "quiz"
+
+  &&
+
+  level === "hard"
+
+  &&
+
+  document.activeElement ===
+  $("nameInput");
+
+
+  /* =========================================
+     SPACE 기본 브라우저 스크롤 차단
+
+     단!
+
+     Hard 입력창에 커서가 있을 때는
+     띄어쓰기를 입력해야 하므로
+     Space를 막지 않는다.
+  ========================================= */
 
   if(
     isSpace &&
-    !(
-      activeScreen.id === "quiz" &&
-      level === "hard" &&
-      document.activeElement === $("nameInput")
-    )
+    !hardInputActive
   ){
+
     event.preventDefault();
+
   }
 
 
-  /* 키를 꾹 눌렀을 때
-     연속으로 다음 문제 넘어가는 것 방지 */
+  /* =========================================
+     키를 계속 누르고 있을 때
+     여러 번 실행되는 현상 방지
+  ========================================= */
 
   if(event.repeat){
+
     return;
+
   }
 
 
-  /* =================================
-     NORMAL QUIZ
+  /* =========================================
+     1. START SCREEN
 
-     1 / 2 / 3 / 4
-     보기 선택
-  ================================= */
-
-  if(
-    activeScreen.id === "quiz" &&
-    level === "normal" &&
-    ["1","2","3","4"].includes(event.key)
-  ){
-
-    event.preventDefault();
-
-    selectNormalByNumber(
-      Number(event.key)
-    );
-
-    return;
-  }
-
-
-  /* =================================
-     HARD QUIZ
-
-     Enter = 정답 확인
-
-     Space는 선수 이름 띄어쓰기용
-  ================================= */
+     ENTER / SPACE
+     → 게임 선택화면
+  ========================================= */
 
   if(
-    activeScreen.id === "quiz" &&
-    level === "hard" &&
-    isEnter
-  ){
+    screen === "splash"
 
-    event.preventDefault();
+    &&
 
-    checkHard();
-
-    return;
-  }
-
-
-  /* =================================
-     시작 화면
-
-     Enter / Space = 게임 선택화면
-  ================================= */
-
-  if(
-    activeScreen.id === "splash" &&
     (isEnter || isSpace)
   ){
 
@@ -1931,19 +1930,113 @@ document.addEventListener("keydown", function(event){
     show("menu");
 
     return;
+
   }
 
 
-  /* =================================
-     선수 프로필 화면
+  /* =========================================
+     2. NORMAL QUIZ
 
-     Enter / Space = 다음 선수
-
-     ★ 이번 수정의 핵심
-  ================================= */
+     1 / 2 / 3 / 4
+     → 보기 선택
+  ========================================= */
 
   if(
-    activeScreen.id === "profile" &&
+    screen === "quiz"
+
+    &&
+
+    level === "normal"
+
+    &&
+
+    ["1","2","3","4"]
+    .includes(event.key)
+  ){
+
+    event.preventDefault();
+
+
+    selectNormalByNumber(
+      Number(event.key)
+    );
+
+
+    return;
+
+  }
+
+
+  /* =========================================
+     NORMAL 문제 화면에서 SPACE
+
+     아무것도 하지 않음.
+
+     스크롤도 하지 않음.
+  ========================================= */
+
+  if(
+    screen === "quiz"
+
+    &&
+
+    level === "normal"
+
+    &&
+
+    isSpace
+  ){
+
+    event.preventDefault();
+
+    return;
+
+  }
+
+
+  /* =========================================
+     3. HARD QUIZ
+
+     ENTER
+     → 정답 제출
+
+     SPACE
+     → 이름 띄어쓰기
+  ========================================= */
+
+  if(
+    screen === "quiz"
+
+    &&
+
+    level === "hard"
+
+    &&
+
+    isEnter
+  ){
+
+    event.preventDefault();
+
+    checkHard();
+
+    return;
+
+  }
+
+
+  /* =========================================
+     4. PLAYER PROFILE
+
+     ENTER / SPACE
+     → 다음 선수
+  ========================================= */
+
+  if(
+    screen === "profile"
+
+    &&
+
     (isEnter || isSpace)
   ){
 
@@ -1952,19 +2045,31 @@ document.addEventListener("keydown", function(event){
     nextQuestion();
 
     return;
+
   }
 
-});
+},
+{
+  passive:false
+}
+);
 
 
-/* ==================================
-   SPACE KEYUP도 스크롤 차단
-================================== */
+/* =================================================
+   SPACE KEYUP
 
-document.addEventListener("keyup", function(event){
+   일부 브라우저의 Space 기본 동작까지 차단
+================================================= */
+
+document.addEventListener(
+"keyup",
+function(event){
 
   const activeScreen =
-    document.querySelector(".screen.active");
+  document.querySelector(
+    ".screen.active"
+  );
+
 
   if(!activeScreen){
     return;
@@ -1972,9 +2077,16 @@ document.addEventListener("keyup", function(event){
 
 
   const isSpace =
-    event.code === "Space" ||
-    event.key === " " ||
-    event.key === "Spacebar";
+
+  event.code === "Space"
+
+  ||
+
+  event.key === " "
+
+  ||
+
+  event.key === "Spacebar";
 
 
   if(!isSpace){
@@ -1982,21 +2094,39 @@ document.addEventListener("keyup", function(event){
   }
 
 
-  /* Hard 이름 입력창에서는
-     Space를 정상적인 띄어쓰기로 사용 */
+  const hardInputActive =
 
-  if(
-    activeScreen.id === "quiz" &&
-    level === "hard" &&
-    document.activeElement === $("nameInput")
-  ){
+  activeScreen.id === "quiz"
+
+  &&
+
+  level === "hard"
+
+  &&
+
+  document.activeElement ===
+  $("nameInput");
+
+
+  /* Hard 입력창에서는
+     띄어쓰기 허용 */
+
+  if(hardInputActive){
+
     return;
+
   }
 
 
   event.preventDefault();
 
-});
+},
+{
+  passive:false
+}
+);
+
+</script>
 
 </body>
 </html>
