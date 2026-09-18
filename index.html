@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#071c3d">
+<meta name="theme-color" content="#06152e">
 
 <title>Bluewings Player Quiz</title>
 
 <style>
+
 :root{
   --blue:#0b4da2;
   --deep:#06152e;
@@ -77,6 +78,7 @@ button{
 }
 
 @keyframes pop{
+
   from{
     opacity:0;
     transform:scale(.65) translateY(20px);
@@ -86,11 +88,12 @@ button{
     opacity:1;
     transform:none;
   }
+
 }
 
 .brand{
+  font-size:27px;
   font-weight:950;
-  font-size:26px;
   margin-top:24px;
 }
 
@@ -104,12 +107,12 @@ button{
 .primary{
   border:0;
   border-radius:17px;
-  padding:17px 20px;
-  background:#fff;
+  padding:17px;
+  width:100%;
+  background:white;
   color:#08244c;
   font-weight:900;
   font-size:17px;
-  width:100%;
   margin-top:25px;
 }
 
@@ -125,7 +128,7 @@ button{
   font-size:12px;
   letter-spacing:2.5px;
   color:#73a9e7;
-  font-weight:800;
+  font-weight:900;
 }
 
 .title{
@@ -137,75 +140,61 @@ button{
 .desc{
   color:var(--muted);
   line-height:1.6;
-  margin:0 0 24px;
+  margin:0 0 22px;
+}
+
+.mode-title{
+  font-size:14px;
+  font-weight:900;
+  color:#bcd3ee;
+  margin:18px 0 8px;
+}
+
+.mode-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .game-card{
   border:1px solid var(--line);
-
-  background:
-  linear-gradient(
-    145deg,
-    rgba(255,255,255,.09),
-    rgba(255,255,255,.035)
-  );
-
+  background:rgba(255,255,255,.065);
   color:white;
-  border-radius:22px;
-  padding:22px;
+  border-radius:20px;
+  padding:20px 15px;
   text-align:left;
-  margin:8px 0;
-  min-height:125px;
+  min-height:145px;
 }
 
-.game-card b{
-  font-size:21px;
-  display:block;
-  margin:10px 0 5px;
-}
-
-.game-card span{
-  color:var(--muted);
-  font-size:14px;
-}
-
-.icon{
-  font-size:30px;
-}
-
-
-/* DIFFICULTY */
-
-.difficulty-card{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.06);
-  color:white;
-  border-radius:22px;
-  padding:24px;
-  margin:9px 0;
-  text-align:left;
-}
-
-.difficulty-card b{
-  display:block;
-  font-size:24px;
-  margin-bottom:7px;
-}
-
-.difficulty-card span{
-  color:var(--muted);
-  line-height:1.5;
-}
-
-.hard-card{
-  border-color:rgba(227,38,69,.55);
+.game-card.hard{
+  border-color:rgba(227,38,69,.5);
 
   background:
   linear-gradient(
     145deg,
     rgba(227,38,69,.16),
-    rgba(255,255,255,.035)
+    rgba(255,255,255,.045)
   );
+}
+
+.game-card .icon{
+  font-size:27px;
+}
+
+.game-card b{
+  display:block;
+  font-size:18px;
+  margin:12px 0 5px;
+}
+
+.game-card span{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+}
+
+.hard b{
+  color:#ff91a4;
 }
 
 
@@ -215,7 +204,7 @@ button{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:18px;
+  margin-bottom:14px;
 }
 
 .back{
@@ -227,30 +216,31 @@ button{
 }
 
 .progress{
-  font-weight:800;
+  font-weight:900;
   color:#bdd0e8;
 }
 
-.difficulty-badge{
+.badge{
   display:inline-block;
-  padding:6px 10px;
+  align-self:flex-start;
+  padding:6px 11px;
   border-radius:999px;
   font-size:11px;
-  font-weight:900;
-  margin-bottom:10px;
+  font-weight:950;
   letter-spacing:1px;
+  margin-bottom:10px;
 }
 
-.normal-badge{
-  background:#185ca9;
+.badge.normal{
+  background:#155ba9;
 }
 
-.hard-badge{
-  background:#b8233d;
+.badge.hard{
+  background:#b7223d;
 }
 
 .visual{
-  height:340px;
+  height:350px;
   border:1px solid var(--line);
   border-radius:24px;
   overflow:hidden;
@@ -276,22 +266,22 @@ button{
 }
 
 .number{
-  font-size:140px;
+  font-size:145px;
   font-weight:1000;
   font-style:italic;
   line-height:1;
-  text-shadow:6px 6px 0 var(--red);
   align-self:center;
+  text-shadow:6px 6px 0 var(--red);
 }
 
 .question{
   font-size:21px;
-  font-weight:900;
-  margin:22px 0 14px;
+  font-weight:950;
+  margin:21px 0 14px;
 }
 
 
-/* NORMAL ANSWERS */
+/* NORMAL */
 
 .answers{
   display:grid;
@@ -306,7 +296,7 @@ button{
   border-radius:16px;
   padding:16px 8px;
   min-height:60px;
-  font-weight:800;
+  font-weight:850;
   font-size:16px;
 }
 
@@ -321,9 +311,9 @@ button{
 }
 
 
-/* HARD INPUT */
+/* HARD */
 
-.hard-answer{
+.hard-box{
   display:none;
 }
 
@@ -331,40 +321,39 @@ button{
   width:100%;
   height:62px;
   border-radius:17px;
-  border:2px solid rgba(255,255,255,.15);
+  border:2px solid rgba(255,255,255,.16);
   background:rgba(255,255,255,.08);
   color:white;
   padding:0 18px;
   font-size:20px;
-  font-weight:800;
+  font-weight:850;
   outline:none;
 }
 
-.name-input::placeholder{
-  color:#7189a7;
-}
-
 .name-input:focus{
-  border-color:#4c91df;
+  border-color:#599ce8;
 }
 
-.submit-answer{
+.name-input::placeholder{
+  color:#7089a8;
+}
+
+.submit{
   width:100%;
+  margin-top:10px;
   border:0;
   border-radius:17px;
   padding:17px;
   background:#0b4da2;
   color:white;
-  font-weight:900;
-  font-size:17px;
-  margin-top:10px;
+  font-weight:950;
 }
 
-.hard-help{
-  color:#7794b7;
+.help{
+  color:#7894b6;
   font-size:12px;
-  margin-top:10px;
   text-align:center;
+  margin-top:9px;
 }
 
 
@@ -375,6 +364,7 @@ button{
   font-size:22px;
   font-weight:950;
   margin:5px 0 17px;
+  line-height:1.45;
 }
 
 .profile-card{
@@ -385,7 +375,7 @@ button{
 }
 
 .profile-photo{
-  height:330px;
+  height:340px;
 
   background:
   radial-gradient(
@@ -395,8 +385,8 @@ button{
   );
 
   display:flex;
-  align-items:flex-end;
   justify-content:center;
+  align-items:flex-end;
 }
 
 .profile-photo img{
@@ -429,7 +419,7 @@ button{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:19px;
+  margin-top:18px;
 }
 
 .info{
@@ -444,11 +434,8 @@ button{
   margin-bottom:5px;
 }
 
-.note{
-  color:#8ea7c5;
-  font-size:12px;
-  text-align:center;
-  margin-top:13px;
+.info strong{
+  font-size:15px;
 }
 
 
@@ -468,8 +455,8 @@ button{
 
 .wrong-list{
   width:100%;
-  margin-top:20px;
   text-align:left;
+  margin-top:20px;
 }
 
 .wrong-chip{
@@ -482,18 +469,29 @@ button{
   font-size:13px;
 }
 
-@media(max-width:380px){
+.secondary{
+  background:#0b4da2;
+  color:white;
+}
+
+.third{
+  background:#173b6a;
+  color:white;
+}
+
+@media(max-width:400px){
 
   .visual{
-    height:300px;
+    height:310px;
   }
 
   .number{
-    font-size:115px;
+    font-size:120px;
   }
 
-  .answers{
-    grid-template-columns:1fr;
+  .game-card{
+    min-height:135px;
+    padding:17px 13px;
   }
 
 }
@@ -523,132 +521,120 @@ PLAYER QUIZ
 <button
 class="primary"
 id="startBtn">
-
 게임 시작
-
 </button>
 
 </section>
 
 
-<!-- GAME TYPE -->
+
+<!-- MENU -->
 
 <section id="menu" class="screen">
 
-<div style="margin-top:20px">
+<div style="margin-top:15px">
 
 <div class="kicker">
-2026 BLUEWINGS
+2026 SUWON BLUEWINGS
 </div>
 
 <h1 class="title">
-어떤 퀴즈를<br>
-플레이할까요?
+선수들을<br>
+얼마나 알고 있나요?
 </h1>
 
 <p class="desc">
-매 게임마다 무작위 선수 10명이 등장합니다.
+매 게임 현재 선수단에서 랜덤 10명이 등장합니다.
 </p>
 
 </div>
 
 
-<button
-class="game-card"
-data-mode="face">
+<div class="mode-title">
+👤 얼굴 보고 맞히기
+</div>
 
-<div class="icon">👤</div>
-
-<b>
-얼굴 보고 맞히기
-</b>
-
-<span>
-선수 사진을 보고 이름을 맞혀보세요
-</span>
-
-</button>
-
+<div class="mode-row">
 
 <button
 class="game-card"
-data-mode="number">
-
-<div class="icon">🔢</div>
-
-<b>
-등번호 보고 맞히기
-</b>
-
-<span>
-등번호만 보고 선수를 맞혀보세요
-</span>
-
-</button>
-
-</section>
-
-
-<!-- DIFFICULTY -->
-
-<section id="difficulty" class="screen">
-
-<button
-class="back"
-id="difficultyBack">
-
-← 게임 선택
-
-</button>
-
-<div style="margin-top:30px">
-
-<div class="kicker">
-SELECT LEVEL
-</div>
-
-<h1 class="title">
-난이도를<br>
-선택하세요
-</h1>
-
-<p class="desc">
-같은 10문제지만 정답 방식이 달라집니다.
-</p>
-
-</div>
-
-
-<button
-class="difficulty-card"
+data-mode="face"
 data-level="normal">
 
-<b>
-⚽ Normal
-</b>
+<div class="icon">⚽</div>
+
+<b>Normal</b>
 
 <span>
-4개의 선수 이름 중 정답을 선택합니다.
+선수 사진을 보고<br>
+4지선다로 맞히기
 </span>
 
 </button>
 
 
 <button
-class="difficulty-card hard-card"
+class="game-card hard"
+data-mode="face"
 data-level="hard">
 
-<b>
-🔥 Hard
-</b>
+<div class="icon">🔥</div>
+
+<b>Hard</b>
 
 <span>
-보기 없이 선수 이름을 직접 입력합니다.
+선수 사진을 보고<br>
+이름 직접 입력
 </span>
 
 </button>
 
+</div>
+
+
+<div class="mode-title">
+🔢 등번호 보고 맞히기
+</div>
+
+<div class="mode-row">
+
+<button
+class="game-card"
+data-mode="number"
+data-level="normal">
+
+<div class="icon">⚽</div>
+
+<b>Normal</b>
+
+<span>
+등번호를 보고<br>
+4지선다로 맞히기
+</span>
+
+</button>
+
+
+<button
+class="game-card hard"
+data-mode="number"
+data-level="hard">
+
+<div class="icon">🔥</div>
+
+<b>Hard</b>
+
+<span>
+등번호를 보고<br>
+이름 직접 입력
+</span>
+
+</button>
+
+</div>
+
 </section>
+
 
 
 <!-- QUIZ -->
@@ -659,10 +645,8 @@ data-level="hard">
 
 <button
 class="back"
-id="quizBack">
-
+id="menuBtn">
 ← 메뉴
-
 </button>
 
 <div
@@ -674,8 +658,8 @@ id="progress">
 
 
 <div
-id="difficultyBadge"
-class="difficulty-badge">
+id="badge"
+class="badge">
 </div>
 
 
@@ -686,13 +670,9 @@ id="visual">
 
 
 <div class="question">
-
 이 선수는 누구일까요?
-
 </div>
 
-
-<!-- NORMAL -->
 
 <div
 class="answers"
@@ -700,11 +680,9 @@ id="answers">
 </div>
 
 
-<!-- HARD -->
-
 <div
-class="hard-answer"
-id="hardAnswer">
+class="hard-box"
+id="hardBox">
 
 <input
 id="nameInput"
@@ -716,17 +694,13 @@ spellcheck="false"
 placeholder="선수 이름 입력">
 
 <button
-id="submitAnswer"
-class="submit-answer">
-
+id="submitBtn"
+class="submit">
 정답 확인
-
 </button>
 
-<div class="hard-help">
-
-띄어쓰기는 정답에 영향을 주지 않습니다.
-
+<div class="help">
+띄어쓰기는 무시됩니다 · Enter로도 제출 가능
 </div>
 
 </div>
@@ -734,13 +708,14 @@ class="submit-answer">
 </section>
 
 
+
 <!-- PROFILE -->
 
 <section id="profile" class="screen">
 
 <div
-class="result-label"
-id="resultLabel">
+id="resultLabel"
+class="result-label">
 </div>
 
 
@@ -757,26 +732,26 @@ id="profileImg">
 <div class="profile-body">
 
 <div
-class="no"
-id="pNo">
+id="pNo"
+class="no">
 </div>
 
 <div
-class="name"
-id="pName">
+id="pName"
+class="name">
 </div>
 
 <div
-class="pos"
-id="pPos">
+id="pPos"
+class="pos">
 </div>
 
 
 <div class="grid">
 
 <div class="info">
-<small>생년월일</small>
-<strong id="pBirth"></strong>
+<small>등번호</small>
+<strong id="pNumber"></strong>
 </div>
 
 <div class="info">
@@ -785,40 +760,30 @@ id="pPos">
 </div>
 
 <div class="info">
-<small>신장</small>
-<strong id="pHeight"></strong>
+<small>생년월일</small>
+<strong id="pBirth"></strong>
 </div>
 
 <div class="info">
-<small>체중</small>
-<strong id="pWeight"></strong>
-</div>
-
-<div class="info">
-<small>국적</small>
-<strong id="pNation"></strong>
-</div>
-
-<div class="info">
-<small>등번호</small>
-<strong id="pNumber"></strong>
+<small>신장 / 체중</small>
+<strong id="pBody"></strong>
 </div>
 
 </div>
 
 </div>
+
 </div>
 
 
 <button
 class="primary"
 id="nextBtn">
-
 다음 선수 →
-
 </button>
 
 </section>
+
 
 
 <!-- RESULT -->
@@ -836,72 +801,565 @@ QUIZ COMPLETE
 </h1>
 
 <div
-class="score"
-id="finalScore">
+id="finalScore"
+class="score">
 </div>
 
 <div
-class="desc"
-id="scoreText">
+id="scoreText"
+class="desc">
 </div>
 
 <div
-class="wrong-list"
-id="wrongList">
+id="wrongList"
+class="wrong-list">
 </div>
 
 
 <button
-class="primary"
 id="retryWrong"
+class="primary"
 style="display:none">
-
 틀린 선수 다시 풀기
-
 </button>
 
 
 <button
-class="primary"
 id="newGameBtn"
-style="background:#0b4da2;color:white">
-
+class="primary secondary">
 새로운 랜덤 10명
-
 </button>
 
 
 <button
-class="primary"
 id="homeBtn"
-style="background:#173b6a;color:white">
-
+class="primary third">
 게임 선택으로
-
 </button>
 
 </section>
 
 
+
 <script>
 
+/* ==================================
+   공식 K리그 이미지
+================================== */
 
-/* =========================
-   PLAYER IMAGES
-========================= */
-
-const IMG_BASE =
+const K02 =
 "https://d2tfp74nsbbrkr.cloudfront.net/v1/player/2026/K02/";
 
-const image = id =>
-IMG_BASE + "player_" + id + ".png";
+const k02 = id =>
+K02 + "player_" + id + ".png";
 
 
-/* =========================
-   FOREIGN DUMMY ANSWERS
-========================= */
+/* ==================================
+   현재 선수단
 
-const foreignDummyPlayers = [
+   face:true =
+   얼굴퀴즈 사용 가능
+
+   face:false =
+   사진 스타일이 다르거나
+   현재 동일 규격 사진이 불명확하여
+   얼굴 퀴즈에서는 제외
+================================== */
+
+const players = [
+
+/* GK */
+
+{
+name:"김민준",
+number:1,
+position:"GK",
+birth:"",
+body:"",
+foreign:false,
+face:true,
+image:k02("20210155")
+},
+
+{
+name:"양형모",
+number:21,
+position:"GK",
+birth:"1991.07.16",
+body:"185cm / 84kg",
+foreign:false,
+face:true,
+image:k02("20140081")
+},
+
+{
+name:"김준홍",
+number:30,
+position:"GK",
+birth:"2003.06.03",
+body:"190cm / 87kg",
+foreign:false,
+face:true,
+image:k02("20210291")
+},
+
+{
+name:"이경준",
+number:31,
+position:"GK",
+birth:"",
+body:"",
+foreign:false,
+face:true,
+image:k02("20240322")
+},
+
+
+/* DF */
+
+{
+name:"모경빈",
+number:3,
+position:"DF",
+birth:"2007.03.24",
+body:"186cm / 78kg",
+foreign:false,
+face:true,
+image:k02("20260240")
+},
+
+{
+name:"송주훈",
+number:4,
+position:"DF",
+birth:"1994.01.13",
+body:"190cm / 83kg",
+foreign:false,
+face:true,
+image:k02("20190049")
+},
+
+{
+name:"고종현",
+number:5,
+position:"DF",
+birth:"2006.04.11",
+body:"191cm / 82kg",
+foreign:false,
+face:true,
+image:k02("20230340")
+},
+
+{
+name:"이준재",
+number:11,
+position:"DF",
+birth:"2003.07.14",
+body:"180cm / 67kg",
+foreign:false,
+face:true,
+image:k02("20220152")
+},
+
+{
+name:"여민준",
+number:13,
+position:"DF",
+birth:"",
+body:"",
+foreign:false,
+face:true,
+image:k02("20260241")
+},
+
+{
+name:"정성민",
+number:15,
+position:"DF",
+birth:"2005.04.15",
+body:"189cm / 78kg",
+foreign:false,
+face:true,
+image:k02("20240222")
+},
+
+{
+name:"최지묵",
+number:18,
+position:"DF",
+birth:"1998.10.09",
+body:"178cm / 70kg",
+foreign:false,
+face:true,
+image:k02("20200162")
+},
+
+{
+name:"홍정호",
+number:20,
+position:"DF",
+birth:"1989.08.12",
+body:"186cm / 77kg",
+foreign:false,
+face:true,
+image:k02("20100163")
+},
+
+{
+name:"이건희",
+number:27,
+position:"DF",
+birth:"",
+body:"",
+foreign:false,
+face:true,
+image:k02("20240152")
+},
+
+{
+name:"윤근영",
+number:28,
+position:"DF",
+birth:"",
+body:"",
+foreign:false,
+face:true,
+image:k02("20260242")
+},
+
+{
+name:"정동윤",
+number:32,
+position:"DF",
+birth:"1994.04.03",
+body:"175cm / 72kg",
+foreign:false,
+face:true,
+image:k02("20160236")
+},
+
+{
+name:"박대원",
+number:33,
+position:"DF",
+birth:"1998.02.25",
+body:"178cm / 76kg",
+foreign:false,
+face:true,
+image:k02("20190142")
+},
+
+{
+name:"홍상원",
+number:44,
+position:"DF",
+birth:"",
+body:"",
+foreign:false,
+face:false,
+image:""
+},
+
+{
+name:"한현서",
+number:66,
+position:"DF",
+birth:"2004.01.02",
+body:"187cm / 76kg",
+foreign:false,
+face:true,
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20250017.png"
+},
+
+{
+name:"김지호",
+number:71,
+position:"DF",
+birth:"2003.01.28",
+body:"174cm / 66kg",
+foreign:false,
+face:true,
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20240309.png"
+},
+
+
+/* MF */
+
+{
+name:"임지훈",
+number:6,
+position:"MF",
+birth:"2005.03.04",
+body:"188cm / 84kg",
+foreign:false,
+face:true,
+image:k02("20240151")
+},
+
+{
+name:"페신",
+number:7,
+position:"MF",
+birth:"1999.01.04",
+body:"178cm / 69kg",
+foreign:true,
+face:true,
+image:k02("20230163")
+},
+
+{
+name:"정호연",
+number:14,
+position:"MF",
+birth:"2000.09.28",
+body:"180cm / 73kg",
+foreign:false,
+face:true,
+image:k02("20220145")
+},
+
+{
+name:"박현빈",
+number:16,
+position:"MF",
+birth:"2003.05.19",
+body:"177cm / 72kg",
+foreign:false,
+face:true,
+image:k02("20220114")
+},
+
+{
+name:"강현묵",
+number:17,
+position:"MF",
+birth:"2001.03.28",
+body:"175cm / 60kg",
+foreign:false,
+face:true,
+image:k02("20200035")
+},
+
+{
+name:"김성주",
+number:19,
+position:"MF",
+birth:"",
+body:"",
+foreign:false,
+face:true,
+image:k02("20230342")
+},
+
+{
+name:"김민우",
+number:23,
+position:"MF",
+birth:"",
+body:"",
+foreign:false,
+face:true,
+image:k02("20240297")
+},
+
+{
+name:"고승범",
+number:24,
+position:"MF",
+birth:"1994.04.24",
+body:"173cm / 70kg",
+foreign:false,
+face:true,
+image:k02("20160115")
+},
+
+{
+name:"이준우",
+number:42,
+position:"MF",
+birth:"",
+body:"",
+foreign:false,
+face:true,
+image:k02("20260271")
+},
+
+{
+name:"김지성",
+number:80,
+position:"MF",
+birth:"",
+body:"",
+foreign:false,
+face:true,
+image:k02("20260272")
+},
+
+
+/* FW */
+
+{
+name:"르본",
+number:8,
+position:"FW",
+birth:"",
+body:"",
+foreign:true,
+face:true,
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20250343.png"
+},
+
+{
+name:"헤이스",
+number:10,
+position:"FW",
+birth:"1993.01.06",
+body:"175cm / 75kg",
+foreign:true,
+face:true,
+image:k02("20210261")
+},
+
+{
+name:"강성진",
+number:22,
+position:"FW",
+birth:"2003.03.26",
+body:"180cm / 75kg",
+foreign:false,
+face:true,
+image:k02("20210079")
+},
+
+{
+name:"브루노 실바",
+number:58,
+position:"FW",
+birth:"2000.03.28",
+body:"176cm / 70kg",
+foreign:true,
+face:true,
+image:k02("20240190")
+},
+
+{
+name:"루이스",
+number:70,
+position:"FW",
+birth:"",
+body:"",
+foreign:true,
+
+/*
+ 다른 구단 촬영 이미지라
+ 얼굴퀴즈에서는 제외
+*/
+face:false,
+
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/2026/K36/player_20230147.png"
+},
+
+{
+name:"김지현",
+number:77,
+position:"FW",
+birth:"1996.07.22",
+body:"183cm / 79kg",
+foreign:false,
+face:true,
+image:k02("20180118")
+},
+
+{
+name:"김결",
+number:90,
+position:"FW",
+birth:"2005.01.14",
+body:"188cm / 81kg",
+foreign:false,
+face:true,
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20240191.png"
+},
+
+{
+name:"박지원",
+number:91,
+position:"FW",
+birth:"",
+body:"",
+foreign:false,
+face:true,
+image:k02("20220180")
+},
+
+{
+name:"이상민",
+number:92,
+position:"FW",
+birth:"2004.06.29",
+body:"175cm / 60kg",
+foreign:false,
+face:true,
+image:k02("20220340")
+},
+
+{
+name:"구민서",
+number:96,
+position:"FW",
+birth:"",
+body:"",
+foreign:false,
+
+/*
+ 공식 페이지 사진이
+ 2024 촬영본이라 얼굴문제 제외
+*/
+face:false,
+
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/2024/K02/player_20220187.png"
+},
+
+{
+name:"두비츠카스",
+number:98,
+position:"FW",
+birth:"",
+body:"",
+foreign:true,
+face:true,
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20260364.png"
+},
+
+{
+name:"김도연",
+number:99,
+position:"FW",
+birth:"2005.02.22",
+body:"183cm / 76kg",
+foreign:false,
+face:true,
+image:k02("20260243")
+}
+
+];
+
+
+/*
+ 외국인 문제에서만 사용하는
+ 타팀 오답 이름
+
+ 문제의 정답으로는 절대 나오지 않음
+*/
+
+const foreignDummy = [
 
 {name:"세징야",foreign:true},
 {name:"라마스",foreign:true},
@@ -913,122 +1371,36 @@ const foreignDummyPlayers = [
 ];
 
 
-/* =========================
-   PLAYERS
-========================= */
-
-const players = [
-
-{name:"양형모",number:21,position:"GK",birth:"1991.07.16",height:"185cm",weight:"84kg",nation:"대한민국",foreign:false,id:"20140081"},
-
-{name:"김준홍",number:30,position:"GK",birth:"2003.06.03",height:"190cm",weight:"87kg",nation:"대한민국",foreign:false,id:"20210291"},
-
-{name:"모경빈",number:3,position:"DF",birth:"2007.03.24",height:"186cm",weight:"78kg",nation:"대한민국",foreign:false,id:"20260240"},
-
-{name:"송주훈",number:4,position:"DF",birth:"1994.01.13",height:"190cm",weight:"83kg",nation:"대한민국",foreign:false,id:"20190049"},
-
-{name:"고종현",number:5,position:"DF",birth:"2006.04.11",height:"191cm",weight:"82kg",nation:"대한민국",foreign:false,id:"20230340"},
-
-{name:"이준재",number:11,position:"DF",birth:"2003.07.14",height:"180cm",weight:"67kg",nation:"대한민국",foreign:false,id:"20220152"},
-
-{name:"정성민",number:15,position:"DF",birth:"2005.04.15",height:"189cm",weight:"78kg",nation:"대한민국",foreign:false,id:"20240222"},
-
-{name:"최지묵",number:18,position:"DF",birth:"1998.10.09",height:"178cm",weight:"70kg",nation:"대한민국",foreign:false,id:"20200162"},
-
-{name:"홍정호",number:20,position:"DF",birth:"1989.08.12",height:"186cm",weight:"77kg",nation:"대한민국",foreign:false,id:"20100163"},
-
-{name:"정동윤",number:32,position:"DF",birth:"1994.04.03",height:"175cm",weight:"72kg",nation:"대한민국",foreign:false,id:"20160236"},
-
-{name:"박대원",number:33,position:"DF",birth:"1998.02.25",height:"178cm",weight:"76kg",nation:"대한민국",foreign:false,id:"20190142"},
-
-{name:"한현서",number:66,position:"DF",birth:"2004.01.02",height:"187cm",weight:"76kg",nation:"대한민국",foreign:false,id:"20250017"},
-
-{
-name:"김지호",
-number:71,
-position:"DF",
-birth:"2003.01.28",
-height:"174cm",
-weight:"66kg",
-nation:"대한민국",
-foreign:false,
-id:"20240309",
-customImage:
-"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20240309.png"
-},
-
-{name:"임지훈",number:6,position:"MF",birth:"2005.03.04",height:"188cm",weight:"84kg",nation:"대한민국",foreign:false,id:"20240151"},
-
-{name:"페신",number:7,position:"MF",birth:"1999.01.04",height:"178cm",weight:"69kg",nation:"브라질",foreign:true,id:"20230163"},
-
-{name:"정호연",number:14,position:"MF",birth:"2000.09.28",height:"180cm",weight:"73kg",nation:"대한민국",foreign:false,id:"20220145"},
-
-{name:"박현빈",number:16,position:"MF",birth:"2003.05.19",height:"177cm",weight:"72kg",nation:"대한민국",foreign:false,id:"20220114"},
-
-{name:"강현묵",number:17,position:"MF",birth:"2001.03.28",height:"175cm",weight:"60kg",nation:"대한민국",foreign:false,id:"20200035"},
-
-{name:"고승범",number:24,position:"MF",birth:"1994.04.24",height:"173cm",weight:"70kg",nation:"대한민국",foreign:false,id:"20160115"},
-
-{name:"헤이스",number:10,position:"FW",birth:"1993.01.06",height:"175cm",weight:"75kg",nation:"브라질",foreign:true,id:"20210261"},
-
-{name:"강성진",number:22,position:"FW",birth:"2003.03.26",height:"180cm",weight:"75kg",nation:"대한민국",foreign:false,id:"20210079"},
-
-{name:"브루노 실바",number:58,position:"FW",birth:"2000.03.28",height:"176cm",weight:"70kg",nation:"브라질",foreign:true,id:"20240190"},
-
-{name:"김지현",number:77,position:"FW",birth:"1996.07.22",height:"183cm",weight:"79kg",nation:"대한민국",foreign:false,id:"20180118"},
-
-{name:"김결",number:90,position:"FW",birth:"2005.01.14",height:"188cm",weight:"81kg",nation:"대한민국",foreign:false,id:"20240191"},
-
-{name:"이상민",number:92,position:"FW",birth:"2004.06.29",height:"175cm",weight:"60kg",nation:"대한민국",foreign:false,id:"20220340"},
-
-{name:"김도연",number:99,position:"FW",birth:"2005.02.22",height:"183cm",weight:"76kg",nation:"대한민국",foreign:false,id:"20260243"}
-
-].map(player => ({
-
-...player,
-
-image:
-player.customImage
-?
-player.customImage
-:
-image(player.id)
-
-}));
-
-
-/* =========================
+/* ==================================
    STATE
-========================= */
+================================== */
 
 let mode = "face";
-let difficulty = "normal";
-
-let selectedMode = "face";
+let level = "normal";
 
 let questions = [];
-let idx = 0;
+let index = 0;
 let score = 0;
 let current = null;
 let wrong = [];
 
 let lastMode = "face";
-let lastDifficulty = "normal";
-
+let lastLevel = "normal";
 
 const $ = id =>
 document.getElementById(id);
 
 
-/* =========================
+/* ==================================
    SCREEN
-========================= */
+================================== */
 
 function show(id){
 
 document
 .querySelectorAll(".screen")
-.forEach(screen =>
+.forEach(
+screen =>
 screen.classList.remove("active")
 );
 
@@ -1040,16 +1412,16 @@ window.scrollTo(0,0);
 }
 
 
-/* =========================
+/* ==================================
    SHUFFLE
-========================= */
+================================== */
 
 function shuffle(array){
 
-const result = [...array];
+const a = [...array];
 
 for(
-let i = result.length - 1;
+let i = a.length - 1;
 i > 0;
 i--
 ){
@@ -1061,63 +1433,105 @@ Math.random() *
 );
 
 [
-result[i],
-result[j]
+a[i],
+a[j]
 ] = [
-result[j],
-result[i]
+a[j],
+a[i]
 ];
 
 }
 
-return result;
+return a;
 
 }
 
 
-/* =========================
-   START
-========================= */
+/* ==================================
+   START GAME
+================================== */
 
-function start(
+function startGame(
 gameMode,
-gameDifficulty,
+gameLevel,
 customPlayers = null
 ){
 
 mode = gameMode;
+level = gameLevel;
 
-difficulty =
-gameDifficulty;
+lastMode = mode;
+lastLevel = level;
 
-lastMode =
-gameMode;
-
-lastDifficulty =
-gameDifficulty;
-
-idx = 0;
+index = 0;
 score = 0;
 wrong = [];
 
 
-let availablePlayers =
-players;
+let pool;
 
+
+/*
+ 얼굴 퀴즈
+
+ 동일한 프로필 스타일로
+ 사용 가능한 선수만 출제
+*/
+
+if(
+mode === "face"
+){
+
+pool =
+players.filter(
+p =>
+p.face === true &&
+p.image
+);
+
+}
+
+
+/*
+ 등번호는
+ 전체 등록선수
+*/
+
+else{
+
+pool =
+[...players];
+
+}
+
+
+/*
+ 복습
+*/
 
 if(customPlayers){
 
+pool =
+customPlayers.filter(
+p =>
+mode !== "face" ||
+p.face === true
+);
+
 questions =
-shuffle(customPlayers);
+shuffle(pool);
 
 }
+
+
+/*
+ 일반 게임은 랜덤 10명
+*/
 
 else{
 
 questions =
-shuffle(
-availablePlayers
-)
+shuffle(pool)
 .slice(0,10);
 
 }
@@ -1125,60 +1539,48 @@ availablePlayers
 
 show("quiz");
 
-load();
+loadQuestion();
 
 }
 
 
-/* =========================
-   LOAD QUESTION
-========================= */
+/* ==================================
+   LOAD
+================================== */
 
-function load(){
+function loadQuestion(){
 
 current =
-questions[idx];
+questions[index];
 
 
 $("progress")
 .textContent =
-`${idx + 1} / ${questions.length}`;
+`${index + 1} / ${questions.length}`;
 
 
-/* badge */
+$("badge")
+.textContent =
+level === "hard"
+?
+"🔥 HARD"
+:
+"⚽ NORMAL";
 
-const badge =
-$("difficultyBadge");
 
-if(
-difficulty ===
-"hard"
-){
-
-badge.textContent =
-"HARD";
-
-badge.className =
-"difficulty-badge hard-badge";
-
-}
-
-else{
-
-badge.textContent =
-"NORMAL";
-
-badge.className =
-"difficulty-badge normal-badge";
-
-}
+$("badge")
+.className =
+level === "hard"
+?
+"badge hard"
+:
+"badge normal";
 
 
 /* FACE */
 
 if(
-mode ===
-"face"
+mode === "face"
 ){
 
 $("visual")
@@ -1187,7 +1589,8 @@ $("visual")
 <img
 class="player-img"
 src="${current.image}"
-alt="${current.name} 선수 사진">
+alt="선수 프로필 사진"
+onerror="imageError()">
 
 `;
 
@@ -1202,7 +1605,9 @@ $("visual")
 .innerHTML = `
 
 <div class="number">
+
 ${current.number}
+
 </div>
 
 `;
@@ -1213,19 +1618,18 @@ ${current.number}
 /* NORMAL */
 
 if(
-difficulty ===
-"normal"
+level === "normal"
 ){
 
 $("answers")
 .style.display =
 "grid";
 
-$("hardAnswer")
+$("hardBox")
 .style.display =
 "none";
 
-createNormalAnswers();
+createChoices();
 
 }
 
@@ -1238,18 +1642,17 @@ $("answers")
 .style.display =
 "none";
 
-$("hardAnswer")
+$("hardBox")
 .style.display =
 "block";
 
 $("nameInput")
-.value =
-"";
+.value = "";
 
 setTimeout(
 () =>
 $("nameInput").focus(),
-200
+150
 );
 
 }
@@ -1257,101 +1660,164 @@ $("nameInput").focus(),
 }
 
 
-/* =========================
-   NORMAL ANSWERS
-========================= */
+/* ==================================
+   IMAGE ERROR
 
-function createNormalAnswers(){
+   사진 오류가 발생하면
+   그 문제를 건너뛰고
+   다른 선수로 교체
+================================== */
 
-let choices;
+function imageError(){
 
+const unused =
+players.filter(
+p =>
 
-/* Korean */
+p.face === true
+
+&&
+
+p.image
+
+&&
+
+!questions.some(
+q =>
+q.name === p.name
+)
+
+);
+
 
 if(
-current.foreign ===
-false
+unused.length
 ){
 
-const pool =
-players.filter(
-player =>
-!player.foreign &&
-player.name !== current.name
-);
+questions[index] =
+shuffle(unused)[0];
 
-choices = [
-
-current,
-
-...shuffle(pool)
-.slice(0,3)
-
-];
+loadQuestion();
 
 }
-
-
-/* Foreign */
 
 else{
 
-let pool =
-players.filter(
-player =>
-player.foreign &&
-player.name !== current.name
+$("visual")
+.innerHTML = `
+
+<div style="
+align-self:center;
+padding:30px;
+text-align:center;
+color:#b8cae0;
+">
+
+사진을 불러오지 못했습니다.<br>
+다음 문제로 넘어갑니다.
+
+</div>
+
+`;
+
+setTimeout(
+nextQuestion,
+800
 );
 
+}
 
-let wrongAnswers =
-shuffle(pool)
+}
+
+
+/* ==================================
+   NORMAL CHOICES
+================================== */
+
+function createChoices(){
+
+let wrongChoices;
+
+
+/* 한국 선수 */
+
+if(
+!current.foreign
+){
+
+wrongChoices =
+
+shuffle(
+
+players.filter(
+p =>
+!p.foreign &&
+p.name !== current.name
+)
+
+)
+
+.slice(0,3);
+
+}
+
+
+/* 외국인 선수 */
+
+else{
+
+wrongChoices =
+
+shuffle(
+
+players.filter(
+p =>
+p.foreign &&
+p.name !== current.name
+)
+
+)
+
 .slice(0,3);
 
 
 if(
-wrongAnswers.length <
-3
+wrongChoices.length < 3
 ){
 
-wrongAnswers = [
+wrongChoices = [
 
-...wrongAnswers,
+...wrongChoices,
 
-...shuffle(
-foreignDummyPlayers
-)
+...shuffle(foreignDummy)
 .slice(
 0,
-3 -
-wrongAnswers.length
+3 - wrongChoices.length
 )
 
 ];
 
 }
 
-
-choices = [
-
-current,
-...wrongAnswers
-
-];
-
 }
 
 
-choices =
-shuffle(choices);
+const choices =
+
+shuffle([
+
+current,
+...wrongChoices
+
+]);
 
 
 $("answers")
-.innerHTML =
-"";
+.innerHTML = "";
 
 
-choices.forEach(player => {
+choices.forEach(
+player => {
 
 const button =
 document.createElement("button");
@@ -1362,12 +1828,14 @@ button.className =
 button.textContent =
 player.name;
 
+
 button.onclick =
 () =>
-normalAnswer(
+checkNormal(
 player,
 button
 );
+
 
 $("answers")
 .appendChild(
@@ -1379,11 +1847,11 @@ button
 }
 
 
-/* =========================
+/* ==================================
    NORMAL CHECK
-========================= */
+================================== */
 
-function normalAnswer(
+function checkNormal(
 selected,
 button
 ){
@@ -1411,9 +1879,9 @@ if(correct){
 
 score++;
 
-button.classList.add(
-"correct"
-);
+button
+.classList
+.add("correct");
 
 }
 
@@ -1421,12 +1889,12 @@ else{
 
 wrong.push(current);
 
-button.classList.add(
-"wrong"
-);
+button
+.classList
+.add("wrong");
 
 
-const correctButton =
+const right =
 buttons.find(
 b =>
 b.textContent ===
@@ -1434,12 +1902,11 @@ current.name
 );
 
 
-if(correctButton){
+if(right){
 
-correctButton
-.classList.add(
-"correct"
-);
+right
+.classList
+.add("correct");
 
 }
 
@@ -1448,50 +1915,49 @@ correctButton
 
 setTimeout(
 () =>
-profile(correct),
+showProfile(
+correct
+),
 450
 );
 
 }
 
 
-/* =========================
-   HARD NAME NORMALIZATION
+/* ==================================
+   HARD NAME CHECK
 
-   공백 무시
-   대소문자 무시
-========================= */
+   브루노 실바
+   브루노실바
+   브루노   실바
 
-function normalizeName(name){
+   모두 동일하게 처리
+================================== */
 
-return name
+function normalizeName(value){
+
+return value
+
+.normalize("NFC")
 
 .trim()
 
-.replace(
-(/\s+/g),
-""
-)
+.replace(/\s+/g,"")
 
 .toLowerCase();
 
 }
 
 
-/* =========================
-   HARD CHECK
-========================= */
+function checkHard(){
 
-function checkHardAnswer(){
-
-const input =
+const typed =
 $("nameInput")
 .value;
 
 
 if(
-input.trim() ===
-""
+!typed.trim()
 ){
 
 $("nameInput")
@@ -1502,19 +1968,15 @@ return;
 }
 
 
-const userAnswer =
-normalizeName(input);
+const correct =
 
+normalizeName(typed)
 
-const correctAnswer =
+===
+
 normalizeName(
 current.name
 );
-
-
-const correct =
-userAnswer ===
-correctAnswer;
 
 
 if(correct){
@@ -1525,22 +1987,20 @@ score++;
 
 else{
 
-wrong.push(
-current
-);
+wrong.push(current);
 
 }
 
 
-profile(
+showProfile(
 correct,
-input
+typed
 );
 
 }
 
 
-/* ENTER KEY */
+/* ENTER */
 
 $("nameInput")
 .addEventListener(
@@ -1548,29 +2008,26 @@ $("nameInput")
 event => {
 
 if(
-event.key ===
-"Enter"
+event.key === "Enter"
 ){
 
-checkHardAnswer();
+checkHard();
 
 }
 
 });
 
 
-/* =========================
+/* ==================================
    PROFILE
-========================= */
+================================== */
 
-function profile(
+function showProfile(
 correct,
-typedAnswer = null
+typed = ""
 ){
 
-show(
-"profile"
-);
+show("profile");
 
 
 if(correct){
@@ -1582,18 +2039,16 @@ $("resultLabel")
 }
 
 else if(
-difficulty ===
-"hard" &&
-typedAnswer
+level === "hard"
 ){
 
 $("resultLabel")
 .innerHTML =
 
-`❌ <span style="color:#91a9c5">
-${typedAnswer}
-</span><br>
-정답은 ${current.name} 선수!`;
+`❌ ${typed}<br>
+<span style="color:#8fb4df">
+정답은 ${current.name} 선수!
+</span>`;
 
 }
 
@@ -1602,16 +2057,34 @@ else{
 $("resultLabel")
 .textContent =
 
-"❌ 정답은 " +
-current.name +
-" 선수!";
+`❌ 정답은 ${current.name} 선수!`;
 
 }
 
 
+/*
+ 사진이 있는 선수만 표시
+*/
+
+if(current.image){
+
+$("profileImg")
+.style.display =
+"block";
+
 $("profileImg")
 .src =
 current.image;
+
+}
+
+else{
+
+$("profileImg")
+.style.display =
+"none";
+
+}
 
 
 $("pNo")
@@ -1627,52 +2100,42 @@ current.name;
 
 $("pPos")
 .textContent =
-current.position;
-
-
-$("pBirth")
-.textContent =
-current.birth;
-
-
-$("pPosition")
-.textContent =
-current.position;
-
-
-$("pHeight")
-.textContent =
-current.height;
-
-
-$("pWeight")
-.textContent =
-current.weight;
-
-
-$("pNation")
-.textContent =
-current.nation;
+current.position || "수원삼성";
 
 
 $("pNumber")
 .textContent =
 current.number;
 
+
+$("pPosition")
+.textContent =
+current.position || "—";
+
+
+$("pBirth")
+.textContent =
+current.birth || "—";
+
+
+$("pBody")
+.textContent =
+current.body || "—";
+
 }
 
 
-/* =========================
+/* ==================================
    NEXT
-========================= */
+================================== */
 
-function next(){
+function nextQuestion(){
 
-idx++;
+index++;
 
 
 if(
-idx >=
+index >=
 questions.length
 ){
 
@@ -1685,14 +2148,14 @@ return;
 
 show("quiz");
 
-load();
+loadQuestion();
 
 }
 
 
-/* =========================
+/* ==================================
    RESULT
-========================= */
+================================== */
 
 function finish(){
 
@@ -1701,10 +2164,12 @@ show("result");
 
 $("finalScore")
 .textContent =
+
 `${score} / ${questions.length}`;
 
 
 const percent =
+
 Math.round(
 score /
 questions.length *
@@ -1715,7 +2180,7 @@ questions.length *
 $("scoreText")
 .textContent =
 
-`${lastDifficulty === "hard" ? "🔥 HARD" : "⚽ NORMAL"} · 정답률 ${percent}%`;
+`${lastLevel === "hard" ? "🔥 HARD" : "⚽ NORMAL"} · 정답률 ${percent}%`;
 
 
 const uniqueWrong = [
@@ -1723,11 +2188,10 @@ const uniqueWrong = [
 ...new Map(
 
 wrong.map(
-player => [
-player.name,
-player
-]
-)
+p => [
+p.name,
+p
+])
 
 ).values()
 
@@ -1739,9 +2203,8 @@ uniqueWrong.length
 ){
 
 $("wrongList")
-.innerHTML =
+.innerHTML = `
 
-`
 <div style="
 color:#9fb5d2;
 margin-bottom:8px;
@@ -1750,23 +2213,23 @@ margin-bottom:8px;
 이번 게임에서 틀린 선수
 
 </div>
+
 `
 
 +
 
 uniqueWrong
 .map(
-player =>
+p => `
 
-`
 <span class="wrong-chip">
 
-NO.${player.number}
-${player.name}
+NO.${p.number}
+${p.name}
 
 </span>
-`
 
+`
 )
 .join("");
 
@@ -1779,10 +2242,9 @@ $("retryWrong")
 $("retryWrong")
 .onclick =
 () =>
-
-start(
+startGame(
 lastMode,
-lastDifficulty,
+lastLevel,
 uniqueWrong
 );
 
@@ -1791,9 +2253,8 @@ uniqueWrong
 else{
 
 $("wrongList")
-.innerHTML =
+.innerHTML = `
 
-`
 <div style="
 text-align:center;
 font-size:18px;
@@ -1802,6 +2263,7 @@ font-size:18px;
 🏆 10문제 전부 맞혔어요!
 
 </div>
+
 `;
 
 
@@ -1814,9 +2276,9 @@ $("retryWrong")
 }
 
 
-/* =========================
+/* ==================================
    BUTTONS
-========================= */
+================================== */
 
 $("startBtn")
 .onclick =
@@ -1824,45 +2286,20 @@ $("startBtn")
 show("menu");
 
 
-/* FACE / NUMBER */
-
 document
-.querySelectorAll(
-".game-card"
-)
+.querySelectorAll(".game-card")
 .forEach(
 button => {
 
 button.onclick =
 () => {
 
-selectedMode =
-button.dataset.mode;
+startGame(
 
-show(
-"difficulty"
-);
+button.dataset.mode,
 
-};
-
-});
-
-
-/* DIFFICULTY */
-
-document
-.querySelectorAll(
-".difficulty-card"
-)
-.forEach(
-button => {
-
-button.onclick =
-() => {
-
-start(
-selectedMode,
 button.dataset.level
+
 );
 
 };
@@ -1870,41 +2307,30 @@ button.dataset.level
 });
 
 
-$("difficultyBack")
+$("menuBtn")
 .onclick =
 () =>
 show("menu");
 
 
-$("quizBack")
+$("submitBtn")
 .onclick =
-() =>
-show("menu");
-
-
-$("submitAnswer")
-.onclick =
-checkHardAnswer;
+checkHard;
 
 
 $("nextBtn")
 .onclick =
-next;
+nextQuestion;
 
-
-/* NEW RANDOM GAME */
 
 $("newGameBtn")
 .onclick =
 () =>
-
-start(
+startGame(
 lastMode,
-lastDifficulty
+lastLevel
 );
 
-
-/* HOME */
 
 $("homeBtn")
 .onclick =
