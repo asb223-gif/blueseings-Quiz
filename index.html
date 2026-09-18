@@ -734,84 +734,63 @@ border:1px solid var(--line);
 
 <script>
 
-/* 기본 선수 사진 주소 */
+/* ========================================
+   2026 SUWON BLUEWINGS PLAYER QUIZ
+   v4 - 1군 선수단 확장판
+======================================== */
 
-const IMG_BASE =
+const KIMG =
 "https://d2tfp74nsbbrkr.cloudfront.net/v1/player/2026/K02/";
 
+const img = id =>
+KIMG + "player_" + id + ".png";
 
-/*
-  외국인 선수 문제에서
-  수원 선수만으로 선택지가 부족할 경우 사용하는
-  오답 전용 이름.
 
-  절대로 문제의 정답으로는 나오지 않음.
-*/
+/* 외국인 선수 오답 전용
+   정답으로는 출제되지 않음 */
 
 const foreignDummyPlayers = [
 
-  { name:"가브리엘", foreign:true },
-  { name:"플라나", foreign:true },
-  { name:"몬타뇨", foreign:true },
-  { name:"세징야", foreign:true },
-  { name:"라스", foreign:true },
-  { name:"마테우스", foreign:true }
+{name:"세징야",foreign:true},
+{name:"오베르단",foreign:true},
+{name:"라마스",foreign:true},
+{name:"가브리엘",foreign:true},
+{name:"플라나",foreign:true},
+{name:"에울레르",foreign:true}
 
 ];
 
 
-/* =========================
-   수원삼성 선수 데이터
-   ========================= */
+/* ========================================
+   수원삼성 2026 1군 선수단
+======================================== */
 
 const players = [
 
+/* ===== GK ===== */
+
 {
-name:"강성진",
-number:22,
-position:"FW",
-birth:"2003.03.26",
-height:"180cm",
-weight:"75kg",
+name:"김민준",
+number:1,
+position:"GK",
+birth:"2000.01.09",
+height:"187cm",
+weight:"83kg",
 nation:"대한민국",
 foreign:false,
-id:"20210079"
+image:img("20210155")
 },
 
 {
-name:"강현묵",
-number:17,
-position:"MF",
-birth:"2001.03.28",
-height:"175cm",
-weight:"60kg",
+name:"양형모",
+number:21,
+position:"GK",
+birth:"1991.07.16",
+height:"185cm",
+weight:"81kg",
 nation:"대한민국",
 foreign:false,
-id:"20200035"
-},
-
-{
-name:"고승범",
-number:24,
-position:"MF",
-birth:"1994.04.24",
-height:"173cm",
-weight:"70kg",
-nation:"대한민국",
-foreign:false,
-id:"20160115"
-},
-
-{
-name:"고종현",
-number:5,
-position:"DF",
-birth:"2006.04.11",
-height:"191cm",
-weight:"82kg",
-nation:"대한민국",
-foreign:false,
-id:"20230340"
+image:img("20140081")
 },
 
 {
@@ -819,56 +798,110 @@ name:"김준홍",
 number:30,
 position:"GK",
 birth:"2003.06.03",
-height:"190cm",
-weight:"87kg",
-nation:"대한민국",
-foreign:false,
-id:"20210291"
-},
-
-{
-name:"김지호",
-number:71,
-position:"FW",
-birth:"2003.01.28",
-height:"174cm",
-weight:"66kg",
-nation:"대한민국",
-foreign:false,
-id:"20240309",
-
-/*
-  김지호는 기존 자동 생성 사진 주소 대신
-  별도 사진 사용
-*/
-
-customImage:
-"https://www.yonginfc.co.kr/data/editor/2407/070c031ba5c5d7fca827bd2766ebf03f_1720756337_898.jpg"
-
-},
-
-{
-name:"브루노 실바",
-number:58,
-position:"FW",
-birth:"2000.03.28",
-height:"176cm",
+height:"188cm",
 weight:"70kg",
-nation:"브라질",
-foreign:true,
-id:"20240190"
+nation:"대한민국",
+foreign:false,
+image:img("20210291")
 },
 
 {
-name:"헤이스",
-number:10,
-position:"MF",
-birth:"1993.01.06",
-height:"175cm",
-weight:"75kg",
-nation:"브라질",
-foreign:true,
-id:"20210261"
+name:"이경준",
+number:31,
+position:"GK",
+birth:"2006.01.27",
+height:"189cm",
+weight:"85kg",
+nation:"대한민국",
+foreign:false,
+image:img("20240322")
+},
+
+
+/* ===== DF ===== */
+
+{
+name:"모경빈",
+number:3,
+position:"DF",
+birth:"2007.03.24",
+height:"187cm",
+weight:"78kg",
+nation:"대한민국",
+foreign:false,
+image:img("20260240")
+},
+
+{
+name:"송주훈",
+number:4,
+position:"DF",
+birth:"1994.01.13",
+height:"190cm",
+weight:"83kg",
+nation:"대한민국",
+foreign:false,
+image:img("20190049")
+},
+
+{
+name:"고종현",
+number:5,
+position:"DF",
+birth:"2006.04.11",
+height:"193cm",
+weight:"85kg",
+nation:"대한민국",
+foreign:false,
+image:img("20230340")
+},
+
+{
+name:"이준재",
+number:11,
+position:"DF",
+birth:"2003.07.14",
+height:"180cm",
+weight:"67kg",
+nation:"대한민국",
+foreign:false,
+image:img("20220152")
+},
+
+{
+name:"여민준",
+number:13,
+position:"DF",
+birth:"2007.10.24",
+height:"174cm",
+weight:"70kg",
+nation:"대한민국",
+foreign:false,
+image:img("20260241")
+},
+
+{
+name:"정성민",
+number:15,
+position:"DF",
+birth:"2005.04.15",
+height:"189cm",
+weight:"78kg",
+nation:"대한민국",
+foreign:false,
+image:img("20240222")
+},
+
+{
+name:"최지묵",
+number:18,
+position:"DF",
+birth:"1998.10.09",
+height:"178cm",
+weight:"70kg",
+nation:"대한민국",
+foreign:false,
+image:img("20200162")
 },
 
 {
@@ -880,7 +913,312 @@ height:"186cm",
 weight:"77kg",
 nation:"대한민국",
 foreign:false,
-id:"20100163"
+image:img("20100163")
+},
+
+{
+name:"이건희",
+number:27,
+position:"DF",
+birth:"2005.03.11",
+height:"174cm",
+weight:"67kg",
+nation:"대한민국",
+foreign:false,
+image:img("20240152")
+},
+
+{
+name:"윤근영",
+number:28,
+position:"DF",
+birth:"2004.10.05",
+height:"193cm",
+weight:"84kg",
+nation:"대한민국",
+foreign:false,
+image:img("20260242")
+},
+
+{
+name:"정동윤",
+number:32,
+position:"DF",
+birth:"1994.04.03",
+height:"175cm",
+weight:"72kg",
+nation:"대한민국",
+foreign:false,
+image:img("20160236")
+},
+
+{
+name:"박대원",
+number:33,
+position:"DF",
+birth:"1998.02.25",
+height:"178cm",
+weight:"76kg",
+nation:"대한민국",
+foreign:false,
+image:img("20190142")
+},
+
+{
+name:"홍상원",
+number:44,
+position:"DF",
+birth:"2007.06.09",
+height:"181cm",
+weight:"80kg",
+nation:"대한민국",
+foreign:false,
+image:null
+},
+
+{
+name:"한현서",
+number:66,
+position:"DF",
+birth:"2004.01.02",
+height:"187cm",
+weight:"76kg",
+nation:"대한민국",
+foreign:false,
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20250017.png"
+},
+
+{
+name:"김지호",
+number:71,
+position:"DF",
+birth:"2003.01.28",
+height:"173cm",
+weight:"67kg",
+nation:"대한민국",
+foreign:false,
+
+/* 김지호 수정된 K리그 사진 */
+
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20240309.png"
+},
+
+
+/* ===== MF ===== */
+
+{
+name:"임지훈",
+number:6,
+position:"MF",
+birth:"2005.03.03",
+height:"189cm",
+weight:"82kg",
+nation:"대한민국",
+foreign:false,
+image:img("20240151")
+},
+
+{
+name:"페신",
+number:7,
+position:"MF",
+birth:"1999.01.04",
+height:"178cm",
+weight:"69kg",
+nation:"브라질",
+foreign:true,
+image:img("20230163")
+},
+
+{
+name:"정호연",
+number:14,
+position:"MF",
+birth:"2000.09.28",
+height:"180cm",
+weight:"73kg",
+nation:"대한민국",
+foreign:false,
+image:img("20220145")
+},
+
+{
+name:"박현빈",
+number:16,
+position:"MF",
+birth:"2003.05.19",
+height:"177cm",
+weight:"72kg",
+nation:"대한민국",
+foreign:false,
+image:img("20220114")
+},
+
+{
+name:"강현묵",
+number:17,
+position:"MF",
+birth:"2001.03.28",
+height:"173cm",
+weight:"67kg",
+nation:"대한민국",
+foreign:false,
+image:img("20200035")
+},
+
+{
+name:"김성주",
+number:19,
+position:"MF",
+birth:"2006.08.02",
+height:"172cm",
+weight:"63kg",
+nation:"대한민국",
+foreign:false,
+image:img("20230342")
+},
+
+{
+name:"김민우",
+number:23,
+position:"MF",
+birth:"2002.03.16",
+height:"185cm",
+weight:"80kg",
+nation:"대한민국",
+foreign:false,
+image:img("20240297")
+},
+
+{
+name:"고승범",
+number:24,
+position:"MF",
+birth:"1994.04.24",
+height:"172cm",
+weight:"71kg",
+nation:"대한민국",
+foreign:false,
+image:img("20160115")
+},
+
+{
+name:"이준우",
+number:42,
+position:"MF",
+birth:"2008.03.31",
+height:"189cm",
+weight:"70kg",
+nation:"대한민국",
+foreign:false,
+image:img("20260271")
+},
+
+{
+name:"김지성",
+number:80,
+position:"MF",
+birth:"2008.02.12",
+height:"178cm",
+weight:"67kg",
+nation:"대한민국",
+foreign:false,
+image:img("20260272")
+},
+
+
+/* ===== FW ===== */
+
+{
+name:"르본",
+number:8,
+position:"FW",
+birth:"1997.07.04",
+height:"173cm",
+weight:"70kg",
+nation:"프랑스",
+foreign:true,
+
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20250343.png"
+},
+
+{
+name:"헤이스",
+number:10,
+position:"FW",
+birth:"1993.01.06",
+height:"174cm",
+weight:"83kg",
+nation:"브라질",
+foreign:true,
+image:img("20210261")
+},
+
+{
+name:"강성진",
+number:22,
+position:"FW",
+birth:"2003.03.26",
+height:"180cm",
+weight:"76kg",
+nation:"대한민국",
+foreign:false,
+image:img("20210079")
+},
+
+{
+name:"브루노 실바",
+number:58,
+position:"FW",
+birth:"2000.03.28",
+height:"176cm",
+weight:"70kg",
+nation:"브라질",
+foreign:true,
+image:img("20240190")
+},
+
+{
+name:"루이스",
+number:70,
+position:"FW",
+birth:"1993.08.10",
+height:"180cm",
+weight:"75kg",
+nation:"콜롬비아",
+foreign:true,
+
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/2026/K36/player_20230147.png"
+},
+
+{
+name:"김지현",
+number:77,
+position:"FW",
+birth:"1996.07.22",
+height:"183cm",
+weight:"79kg",
+nation:"대한민국",
+foreign:false,
+image:img("20180118")
+},
+
+{
+name:"김결",
+number:90,
+position:"FW",
+birth:"2005.01.14",
+height:"188cm",
+weight:"81kg",
+nation:"대한민국",
+foreign:false,
+
+image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20240191.png"
 },
 
 {
@@ -892,35 +1230,41 @@ height:"175cm",
 weight:"60kg",
 nation:"대한민국",
 foreign:false,
-id:"20220340"
-}
+image:img("20220340")
+},
 
-].map(player => ({
-
-...player,
+{
+name:"두비츠카스",
+number:98,
+position:"FW",
+birth:"1998.07.09",
+height:"188cm",
+weight:"83kg",
+nation:"리투아니아",
+foreign:true,
 
 image:
+"https://d2tfp74nsbbrkr.cloudfront.net/v1/player/player_20260364.png"
+},
 
-player.customImage
+{
+name:"김도연",
+number:99,
+position:"FW",
+birth:"2005.02.22",
+height:"183cm",
+weight:"76kg",
+nation:"대한민국",
+foreign:false,
+image:img("20260243")
+}
 
-?
-
-player.customImage
-
-:
-
-IMG_BASE +
-"player_" +
-player.id +
-".png"
-
-}));
-
+];
 
 
-/* =========================
-   게임 변수
-   ========================= */
+/* ========================================
+   게임 상태
+======================================== */
 
 let mode = "face";
 
@@ -939,10 +1283,9 @@ const $ = id =>
 document.getElementById(id);
 
 
-
-/* =========================
+/* ========================================
    화면 전환
-   ========================= */
+======================================== */
 
 function show(id){
 
@@ -954,25 +1297,21 @@ screen.classList.remove("active");
 
 });
 
-
 $(id)
 .classList.add("active");
-
 
 window.scrollTo(0,0);
 
 }
 
 
-
-/* =========================
-   랜덤 섞기
-   ========================= */
+/* ========================================
+   배열 섞기
+======================================== */
 
 function shuffle(array){
 
 const result = [...array];
-
 
 for(
 let i = result.length - 1;
@@ -985,7 +1324,6 @@ Math.floor(
 Math.random() *
 (i + 1)
 );
-
 
 [
 result[i],
@@ -1000,16 +1338,14 @@ result[i]
 
 }
 
-
 return result;
 
 }
 
 
-
-/* =========================
+/* ========================================
    게임 시작
-   ========================= */
+======================================== */
 
 function start(
 selectedMode,
@@ -1019,7 +1355,6 @@ customPlayers = null
 mode =
 selectedMode;
 
-
 idx = 0;
 
 score = 0;
@@ -1027,17 +1362,46 @@ score = 0;
 wrong = [];
 
 
-questions =
+/*
+ 얼굴 퀴즈는
+ 사진이 있는 선수만 출제
 
-customPlayers
+ 등번호 퀴즈는
+ 전체 선수 출제
+*/
+
+let availablePlayers =
+
+mode === "face"
 
 ?
 
-shuffle(customPlayers)
+players.filter(
+player =>
+player.image
+)
 
 :
 
-shuffle(players);
+players;
+
+
+if(customPlayers){
+
+availablePlayers =
+customPlayers.filter(
+player =>
+mode !== "face" ||
+player.image
+);
+
+}
+
+
+questions =
+shuffle(
+availablePlayers
+);
 
 
 show("quiz");
@@ -1047,10 +1411,9 @@ load();
 }
 
 
-
-/* =========================
+/* ========================================
    문제 출력
-   ========================= */
+======================================== */
 
 function load(){
 
@@ -1065,22 +1428,23 @@ $("progress")
 
 
 
-/*
- 얼굴 맞히기
-*/
+/* 얼굴 문제 */
 
-if(mode === "face"){
+if(
+mode === "face"
+){
 
-$("visual").innerHTML = `
+$("visual")
+.innerHTML = `
 
 <img
 class="player-img"
 src="${current.image}"
-alt="${current.name} 선수 사진"
+alt="선수 사진"
 onerror="
 this.style.display='none';
 this.parentElement.innerHTML=
-'<div style=&quot;align-self:center;color:#b9cbe0;text-align:center;padding:20px;&quot;>선수 사진을 불러오지 못했습니다.</div>';
+'<div style=&quot;align-self:center;color:#b9cbe0;text-align:center;padding:30px;&quot;>사진을 불러오지 못했습니다.</div>';
 ">
 
 `;
@@ -1088,13 +1452,12 @@ this.parentElement.innerHTML=
 }
 
 
-/*
- 등번호 맞히기
-*/
+/* 등번호 문제 */
 
 else{
 
-$("visual").innerHTML = `
+$("visual")
+.innerHTML = `
 
 <div class="number">
 
@@ -1112,25 +1475,18 @@ createAnswers();
 }
 
 
-
-/* =========================
-   선택지 만들기
-
-   ★ 이번 버전 핵심
-   ========================= */
+/* ========================================
+   선택지 생성
+======================================== */
 
 function createAnswers(){
 
 let choices = [];
 
 
-/*
- =====================
- 한국 선수 문제
- =====================
-
- 한국 선수 이름만 사용
-*/
+/* =========================
+   한국 선수 문제
+========================= */
 
 if(
 current.foreign === false
@@ -1138,101 +1494,24 @@ current.foreign === false
 
 const koreanPlayers =
 
-players.filter(player =>
+players.filter(
+player =>
 
 player.foreign === false
 
 &&
 
-player.name !== current.name
-
+player.name !==
+current.name
 );
 
 
 const wrongPlayers =
 
-shuffle(koreanPlayers)
-.slice(0,3);
-
-
-choices =
-
-[
-current,
-...wrongPlayers
-];
-
-}
-
-
-
-/*
- =====================
- 외국인 선수 문제
- =====================
-
- 외국인 이름만 사용
-*/
-
-else{
-
-const suwonForeignPlayers =
-
-players.filter(player =>
-
-player.foreign === true
-
-&&
-
-player.name !== current.name
-
-);
-
-
-let wrongPlayers =
-
-shuffle(suwonForeignPlayers);
-
-
-/*
-  오답이 3명이 안 되면
-  타팀 외국인 이름으로 채움
-*/
-
-if(
-wrongPlayers.length < 3
-){
-
-const need =
-
-3 -
-wrongPlayers.length;
-
-
-const extraForeign =
-
 shuffle(
-foreignDummyPlayers
+koreanPlayers
 )
-.slice(
-0,
-need
-);
-
-
-wrongPlayers = [
-
-...wrongPlayers,
-...extraForeign
-
-];
-
-}
-
-
-wrongPlayers =
-
-wrongPlayers.slice(0,3);
+.slice(0,3);
 
 
 choices = [
@@ -1245,28 +1524,101 @@ current,
 }
 
 
+/* =========================
+   외국인 선수 문제
+========================= */
+
+else{
+
+let foreignPlayers =
+
+players.filter(
+player =>
+
+player.foreign === true
+
+&&
+
+player.name !==
+current.name
+);
+
+
+foreignPlayers =
+shuffle(
+foreignPlayers
+);
+
+
+let wrongPlayers =
+foreignPlayers.slice(0,3);
+
 
 /*
- 선택지 순서 랜덤
+ 혹시 외국인 선수가
+ 3명 미만이 되면
+ 타팀 외국인 선수 이름 사용
 */
+
+if(
+wrongPlayers.length < 3
+){
+
+const needed =
+3 -
+wrongPlayers.length;
+
+
+const extra =
+
+shuffle(
+foreignDummyPlayers
+)
+.slice(
+0,
+needed
+);
+
+
+wrongPlayers = [
+
+...wrongPlayers,
+...extra
+
+];
+
+}
+
+
+choices = [
+
+current,
+...wrongPlayers
+
+];
+
+}
+
+
+/* 보기 위치 랜덤 */
 
 choices =
-shuffle(choices);
+shuffle(
+choices
+);
 
-
-
-/*
- 버튼 생성
-*/
 
 $("answers")
 .innerHTML = "";
 
 
-choices.forEach(player => {
+choices.forEach(
+player => {
 
 const button =
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 
 button.className =
@@ -1300,10 +1652,9 @@ button
 }
 
 
-
-/* =========================
+/* ========================================
    정답 판정
-   ========================= */
+======================================== */
 
 function answer(
 selected,
@@ -1313,12 +1664,15 @@ button
 const buttons = [
 
 ...document
-.querySelectorAll(".answer")
+.querySelectorAll(
+".answer"
+)
 
 ];
 
 
-buttons.forEach(button => {
+buttons.forEach(
+button => {
 
 button.disabled = true;
 
@@ -1331,7 +1685,6 @@ selected.name ===
 current.name;
 
 
-
 if(correct){
 
 score++;
@@ -1339,28 +1692,33 @@ score++;
 
 button
 .classList
-.add("correct");
+.add(
+"correct"
+);
 
 }
 
-
 else{
 
-wrong.push(current);
+wrong.push(
+current
+);
 
 
 button
 .classList
-.add("wrong");
+.add(
+"wrong"
+);
 
 
 const correctButton =
 
-buttons.find(button =>
+buttons.find(
+button =>
 
 button.textContent ===
 current.name
-
 );
 
 
@@ -1368,23 +1726,21 @@ if(correctButton){
 
 correctButton
 .classList
-.add("correct");
+.add(
+"correct"
+);
 
 }
 
 }
 
-
-
-/*
- 정답 확인 후
- 프로필로 이동
-*/
 
 setTimeout(
 () => {
 
-profile(correct);
+profile(
+correct
+);
 
 },
 500
@@ -1393,14 +1749,17 @@ profile(correct);
 }
 
 
-
-/* =========================
+/* ========================================
    선수 프로필
-   ========================= */
+======================================== */
 
-function profile(correct){
+function profile(
+correct
+){
 
-show("profile");
+show(
+"profile"
+);
 
 
 $("resultLabel")
@@ -1419,6 +1778,16 @@ current.name +
 " 선수!";
 
 
+/* 사진 */
+
+if(
+current.image
+){
+
+$("profileImg")
+.style.display =
+"block";
+
 
 $("profileImg")
 .src =
@@ -1430,6 +1799,18 @@ $("profileImg")
 current.name +
 " 선수";
 
+}
+
+else{
+
+$("profileImg")
+.style.display =
+"none";
+
+}
+
+
+/* 프로필 */
 
 $("pNo")
 .textContent =
@@ -1480,10 +1861,9 @@ current.number;
 }
 
 
-
-/* =========================
+/* ========================================
    다음 문제
-   ========================= */
+======================================== */
 
 function next(){
 
@@ -1502,21 +1882,24 @@ return;
 }
 
 
-show("quiz");
+show(
+"quiz"
+);
 
 load();
 
 }
 
 
-
-/* =========================
+/* ========================================
    게임 종료
-   ========================= */
+======================================== */
 
 function finish(){
 
-show("result");
+show(
+"result"
+);
 
 
 $("finalScore")
@@ -1525,11 +1908,7 @@ $("finalScore")
 `${score} / ${questions.length}`;
 
 
-
-$("scoreText")
-.textContent =
-
-"정답률 " +
+const percent =
 
 Math.round(
 
@@ -1537,19 +1916,23 @@ score /
 questions.length *
 100
 
-)
+);
 
-+
 
+$("scoreText")
+.textContent =
+
+"정답률 " +
+percent +
 "%";
-
 
 
 const uniqueWrong = [
 
 ...new Map(
 
-wrong.map(player => [
+wrong.map(
+player => [
 
 player.name,
 player
@@ -1559,7 +1942,6 @@ player
 ).values()
 
 ];
-
 
 
 if(
@@ -1585,7 +1967,8 @@ margin-bottom:7px;
 
 uniqueWrong
 
-.map(player => `
+.map(
+player => `
 
 <span class="wrong-chip">
 
@@ -1594,10 +1977,10 @@ ${player.name}
 
 </span>
 
-`)
+`
+)
 
 .join("");
-
 
 
 $("retryWrong")
@@ -1617,7 +2000,6 @@ uniqueWrong
 };
 
 }
-
 
 else{
 
@@ -1645,24 +2027,27 @@ $("retryWrong")
 }
 
 
-
-/* =========================
+/* ========================================
    버튼 연결
-   ========================= */
+======================================== */
 
 $("startBtn")
 .onclick =
 () => {
 
-show("menu");
+show(
+"menu"
+);
 
 };
 
 
-
 document
-.querySelectorAll(".game-card")
-.forEach(button => {
+.querySelectorAll(
+".game-card"
+)
+.forEach(
+button => {
 
 button.onclick =
 () => {
@@ -1676,15 +2061,15 @@ button.dataset.mode
 });
 
 
-
 $("menuBtn")
 .onclick =
 () => {
 
-show("menu");
+show(
+"menu"
+);
 
 };
-
 
 
 $("nextBtn")
@@ -1692,12 +2077,13 @@ $("nextBtn")
 next;
 
 
-
 $("homeBtn")
 .onclick =
 () => {
 
-show("menu");
+show(
+"menu"
+);
 
 };
 
