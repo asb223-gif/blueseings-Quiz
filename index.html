@@ -734,13 +734,35 @@ border:1px solid var(--line);
 
 <script>
 
-/* 선수 사진 주소 */
+/* 기본 선수 사진 주소 */
 
 const IMG_BASE =
 "https://d2tfp74nsbbrkr.cloudfront.net/v1/player/2026/K02/";
 
 
-/* 선수 데이터 */
+/*
+  외국인 선수 문제에서
+  수원 선수만으로 선택지가 부족할 경우 사용하는
+  오답 전용 이름.
+
+  절대로 문제의 정답으로는 나오지 않음.
+*/
+
+const foreignDummyPlayers = [
+
+  { name:"가브리엘", foreign:true },
+  { name:"플라나", foreign:true },
+  { name:"몬타뇨", foreign:true },
+  { name:"세징야", foreign:true },
+  { name:"라스", foreign:true },
+  { name:"마테우스", foreign:true }
+
+];
+
+
+/* =========================
+   수원삼성 선수 데이터
+   ========================= */
 
 const players = [
 
@@ -752,6 +774,7 @@ birth:"2003.03.26",
 height:"180cm",
 weight:"75kg",
 nation:"대한민국",
+foreign:false,
 id:"20210079"
 },
 
@@ -763,6 +786,7 @@ birth:"2001.03.28",
 height:"175cm",
 weight:"60kg",
 nation:"대한민국",
+foreign:false,
 id:"20200035"
 },
 
@@ -774,6 +798,7 @@ birth:"1994.04.24",
 height:"173cm",
 weight:"70kg",
 nation:"대한민국",
+foreign:false,
 id:"20160115"
 },
 
@@ -785,6 +810,7 @@ birth:"2006.04.11",
 height:"191cm",
 weight:"82kg",
 nation:"대한민국",
+foreign:false,
 id:"20230340"
 },
 
@@ -796,6 +822,7 @@ birth:"2003.06.03",
 height:"190cm",
 weight:"87kg",
 nation:"대한민국",
+foreign:false,
 id:"20210291"
 },
 
@@ -807,7 +834,17 @@ birth:"2003.01.28",
 height:"174cm",
 weight:"66kg",
 nation:"대한민국",
-id:"20240309"
+foreign:false,
+id:"20240309",
+
+/*
+  김지호는 기존 자동 생성 사진 주소 대신
+  별도 사진 사용
+*/
+
+customImage:
+"https://www.yonginfc.co.kr/data/editor/2407/070c031ba5c5d7fca827bd2766ebf03f_1720756337_898.jpg"
+
 },
 
 {
@@ -818,6 +855,7 @@ birth:"2000.03.28",
 height:"176cm",
 weight:"70kg",
 nation:"브라질",
+foreign:true,
 id:"20240190"
 },
 
@@ -829,6 +867,7 @@ birth:"1993.01.06",
 height:"175cm",
 weight:"75kg",
 nation:"브라질",
+foreign:true,
 id:"20210261"
 },
 
@@ -840,6 +879,7 @@ birth:"1989.08.12",
 height:"186cm",
 weight:"77kg",
 nation:"대한민국",
+foreign:false,
 id:"20100163"
 },
 
@@ -851,6 +891,7 @@ birth:"2004.06.29",
 height:"175cm",
 weight:"60kg",
 nation:"대한민국",
+foreign:false,
 id:"20220340"
 }
 
@@ -859,6 +900,15 @@ id:"20220340"
 ...player,
 
 image:
+
+player.customImage
+
+?
+
+player.customImage
+
+:
+
 IMG_BASE +
 "player_" +
 player.id +
@@ -866,6 +916,11 @@ player.id +
 
 }));
 
+
+
+/* =========================
+   게임 변수
+   ========================= */
 
 let mode = "face";
 
@@ -880,35 +935,44 @@ let current = null;
 let wrong = [];
 
 
-/* 편의 함수 */
-
 const $ = id =>
 document.getElementById(id);
 
 
-/* 화면 전환 */
+
+/* =========================
+   화면 전환
+   ========================= */
 
 function show(id){
 
 document
 .querySelectorAll(".screen")
-.forEach(screen =>
-screen.classList.remove("active")
-);
+.forEach(screen => {
+
+screen.classList.remove("active");
+
+});
+
 
 $(id)
 .classList.add("active");
+
 
 window.scrollTo(0,0);
 
 }
 
 
-/* 랜덤 섞기 */
+
+/* =========================
+   랜덤 섞기
+   ========================= */
 
 function shuffle(array){
 
 const result = [...array];
+
 
 for(
 let i = result.length - 1;
@@ -922,29 +986,39 @@ Math.random() *
 (i + 1)
 );
 
+
 [
 result[i],
 result[j]
+
 ] = [
+
 result[j],
 result[i]
+
 ];
 
 }
+
 
 return result;
 
 }
 
 
-/* 게임 시작 */
+
+/* =========================
+   게임 시작
+   ========================= */
 
 function start(
 selectedMode,
 customPlayers = null
 ){
 
-mode = selectedMode;
+mode =
+selectedMode;
+
 
 idx = 0;
 
@@ -952,10 +1026,19 @@ score = 0;
 
 wrong = [];
 
+
 questions =
+
 customPlayers
-? shuffle(customPlayers)
-: shuffle(players);
+
+?
+
+shuffle(customPlayers)
+
+:
+
+shuffle(players);
+
 
 show("quiz");
 
@@ -964,17 +1047,27 @@ load();
 }
 
 
-/* 문제 불러오기 */
+
+/* =========================
+   문제 출력
+   ========================= */
 
 function load(){
 
 current =
 questions[idx];
 
+
 $("progress")
 .textContent =
+
 `${idx + 1} / ${questions.length}`;
 
+
+
+/*
+ 얼굴 맞히기
+*/
 
 if(mode === "face"){
 
@@ -983,18 +1076,30 @@ $("visual").innerHTML = `
 <img
 class="player-img"
 src="${current.image}"
-alt="${current.name} 선수 사진">
+alt="${current.name} 선수 사진"
+onerror="
+this.style.display='none';
+this.parentElement.innerHTML=
+'<div style=&quot;align-self:center;color:#b9cbe0;text-align:center;padding:20px;&quot;>선수 사진을 불러오지 못했습니다.</div>';
+">
 
 `;
 
 }
+
+
+/*
+ 등번호 맞히기
+*/
 
 else{
 
 $("visual").innerHTML = `
 
 <div class="number">
+
 ${current.number}
+
 </div>
 
 `;
@@ -1002,22 +1107,157 @@ ${current.number}
 }
 
 
-const distractors =
-shuffle(
-players.filter(
-player =>
+createAnswers();
+
+}
+
+
+
+/* =========================
+   선택지 만들기
+
+   ★ 이번 버전 핵심
+   ========================= */
+
+function createAnswers(){
+
+let choices = [];
+
+
+/*
+ =====================
+ 한국 선수 문제
+ =====================
+
+ 한국 선수 이름만 사용
+*/
+
+if(
+current.foreign === false
+){
+
+const koreanPlayers =
+
+players.filter(player =>
+
+player.foreign === false
+
+&&
+
 player.name !== current.name
-)
-)
+
+);
+
+
+const wrongPlayers =
+
+shuffle(koreanPlayers)
 .slice(0,3);
 
 
-const choices =
-shuffle([
-current,
-...distractors
-]);
+choices =
 
+[
+current,
+...wrongPlayers
+];
+
+}
+
+
+
+/*
+ =====================
+ 외국인 선수 문제
+ =====================
+
+ 외국인 이름만 사용
+*/
+
+else{
+
+const suwonForeignPlayers =
+
+players.filter(player =>
+
+player.foreign === true
+
+&&
+
+player.name !== current.name
+
+);
+
+
+let wrongPlayers =
+
+shuffle(suwonForeignPlayers);
+
+
+/*
+  오답이 3명이 안 되면
+  타팀 외국인 이름으로 채움
+*/
+
+if(
+wrongPlayers.length < 3
+){
+
+const need =
+
+3 -
+wrongPlayers.length;
+
+
+const extraForeign =
+
+shuffle(
+foreignDummyPlayers
+)
+.slice(
+0,
+need
+);
+
+
+wrongPlayers = [
+
+...wrongPlayers,
+...extraForeign
+
+];
+
+}
+
+
+wrongPlayers =
+
+wrongPlayers.slice(0,3);
+
+
+choices = [
+
+current,
+...wrongPlayers
+
+];
+
+}
+
+
+
+/*
+ 선택지 순서 랜덤
+*/
+
+choices =
+shuffle(choices);
+
+
+
+/*
+ 버튼 생성
+*/
 
 $("answers")
 .innerHTML = "";
@@ -1028,20 +1268,27 @@ choices.forEach(player => {
 const button =
 document.createElement("button");
 
+
 button.className =
 "answer";
+
 
 button.textContent =
 player.name;
 
+
 button.addEventListener(
 "click",
-() =>
+() => {
+
 answer(
 player,
 button
-)
 );
+
+}
+);
+
 
 $("answers")
 .appendChild(
@@ -1053,34 +1300,42 @@ button
 }
 
 
-/* 정답 선택 */
+
+/* =========================
+   정답 판정
+   ========================= */
 
 function answer(
 selected,
 button
 ){
 
-const buttons =
-[
+const buttons = [
+
 ...document
 .querySelectorAll(".answer")
+
 ];
 
 
-buttons.forEach(
-button =>
-button.disabled = true
-);
+buttons.forEach(button => {
+
+button.disabled = true;
+
+});
 
 
 const correct =
+
 selected.name ===
 current.name;
+
 
 
 if(correct){
 
 score++;
+
 
 button
 .classList
@@ -1088,9 +1343,11 @@ button
 
 }
 
+
 else{
 
 wrong.push(current);
+
 
 button
 .classList
@@ -1098,10 +1355,12 @@ button
 
 
 const correctButton =
-buttons.find(
-button =>
+
+buttons.find(button =>
+
 button.textContent ===
 current.name
+
 );
 
 
@@ -1116,16 +1375,28 @@ correctButton
 }
 
 
+
+/*
+ 정답 확인 후
+ 프로필로 이동
+*/
+
 setTimeout(
-() =>
-profile(correct),
-420
+() => {
+
+profile(correct);
+
+},
+500
 );
 
 }
 
 
-/* 프로필 */
+
+/* =========================
+   선수 프로필
+   ========================= */
 
 function profile(correct){
 
@@ -1134,11 +1405,19 @@ show("profile");
 
 $("resultLabel")
 .textContent =
+
 correct
-? "⭕ 정답입니다!"
-: "❌ 정답은 " +
+
+?
+
+"⭕ 정답입니다!"
+
+:
+
+"❌ 정답은 " +
 current.name +
 " 선수!";
+
 
 
 $("profileImg")
@@ -1154,6 +1433,7 @@ current.name +
 
 $("pNo")
 .textContent =
+
 "NO. " +
 current.number;
 
@@ -1200,7 +1480,10 @@ current.number;
 }
 
 
-/* 다음 문제 */
+
+/* =========================
+   다음 문제
+   ========================= */
 
 function next(){
 
@@ -1226,7 +1509,10 @@ load();
 }
 
 
-/* 게임 종료 */
+
+/* =========================
+   게임 종료
+   ========================= */
 
 function finish(){
 
@@ -1235,35 +1521,50 @@ show("result");
 
 $("finalScore")
 .textContent =
+
 `${score} / ${questions.length}`;
+
 
 
 $("scoreText")
 .textContent =
+
 "정답률 " +
+
 Math.round(
+
 score /
 questions.length *
 100
-) +
+
+)
+
++
+
 "%";
 
 
-const uniqueWrong =
-[
+
+const uniqueWrong = [
+
 ...new Map(
-wrong.map(
-player =>
-[
+
+wrong.map(player => [
+
 player.name,
 player
-]
-)
+
+])
+
 ).values()
+
 ];
 
 
-if(uniqueWrong.length){
+
+if(
+uniqueWrong.length
+){
 
 $("wrongList")
 .innerHTML = `
@@ -1278,11 +1579,13 @@ margin-bottom:7px;
 
 </div>
 
-` +
+`
+
++
 
 uniqueWrong
-.map(
-player => `
+
+.map(player => `
 
 <span class="wrong-chip">
 
@@ -1291,9 +1594,10 @@ ${player.name}
 
 </span>
 
-`
-)
+`)
+
 .join("");
+
 
 
 $("retryWrong")
@@ -1303,13 +1607,17 @@ $("retryWrong")
 
 $("retryWrong")
 .onclick =
-() =>
+() => {
+
 start(
 mode,
 uniqueWrong
 );
 
+};
+
 }
+
 
 else{
 
@@ -1337,32 +1645,46 @@ $("retryWrong")
 }
 
 
-/* 버튼 */
+
+/* =========================
+   버튼 연결
+   ========================= */
 
 $("startBtn")
 .onclick =
-() =>
+() => {
+
 show("menu");
+
+};
+
 
 
 document
 .querySelectorAll(".game-card")
-.forEach(
-button => {
+.forEach(button => {
 
 button.onclick =
-() =>
+() => {
+
 start(
 button.dataset.mode
 );
 
+};
+
 });
+
 
 
 $("menuBtn")
 .onclick =
-() =>
+() => {
+
 show("menu");
+
+};
+
 
 
 $("nextBtn")
@@ -1370,10 +1692,14 @@ $("nextBtn")
 next;
 
 
+
 $("homeBtn")
 .onclick =
-() =>
+() => {
+
 show("menu");
+
+};
 
 </script>
 
